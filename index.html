@@ -199,8 +199,8 @@
         <p class="section-subtitle">Choose your preferred gameplay style in the Star Atlas universe</p>
         
         <div class="toggle-container">
-            <button class="toggle-btn active" onclick="toggleGameView('3rdperson')">3rd Person Experience</button>
-            <button class="toggle-btn" onclick="toggleGameView('rts')">Top-Down RTS View</button>
+            <button class="toggle-btn active" onclick="showGameMode('3rdperson')">3rd Person Experience</button>
+            <button class="toggle-btn" onclick="showGameMode('rts')">Top-Down RTS View</button>
         </div>
 
         <!-- 3rd Person Content -->
@@ -399,106 +399,343 @@
         </div>
     </footer>
 
-    <!-- Timestamp -->
-    <div class="timestamp" id="timestamp">
-        <div class="timestamp-time">--:--:--</div>
-        <div class="timestamp-date">----</div>
+    <!-- Scan Line Effect -->
+    <div class="scan-line"></div>
+
+    <!-- Timestamp Widget -->
+    <div class="timestamp">
+        <div class="timestamp-time" id="timestamp-time">00:00:00</div>
+        <div class="timestamp-date" id="timestamp-date">Jan 01, 2625</div>
     </div>
 
     <script>
-        // Toggle between game views
-        function toggleGameView(view) {
-            // Update buttons
-            document.querySelectorAll('.toggle-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
+        // Toggle game content
+        function showGameMode(mode) {
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.game-content').forEach(content => content.classList.remove('active'));
             
-            // Update content
-            document.querySelectorAll('.game-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.getElementById(view).classList.add('active');
+            event.target.classList.add('active');
+            document.getElementById(mode).classList.add('active');
         }
 
-        // Add subtle scroll effect to navigation
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(10, 10, 10, 0.98)';
-            } else {
-                nav.style.background = 'rgba(10, 10, 10, 0.95)';
-            }
-        });
+        // Update timestamp every second with correct future date
+        function updateTimestamp() {
+            const now = new Date();
+            const futureDate = new Date(now);
+            futureDate.setFullYear(now.getFullYear() + 600);
+            
+            const time = futureDate.toLocaleTimeString('en-US', { hour12: false });
+            const date = futureDate.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: '2-digit' 
+            });
+            
+            document.getElementById('timestamp-time').textContent = time;
+            document.getElementById('timestamp-date').textContent = date;
+        }
+        setInterval(updateTimestamp, 1000);
+        updateTimestamp();
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // News filter
+        document.querySelectorAll('.news-nav button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.news-nav button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Animate news cards on filter change
+                document.querySelectorAll('.news-card').forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, index * 100);
+                });
             });
         });
 
-        // Add animation on scroll
+        // Add active loading bar on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loading-bar').classList.add('active');
+            }, 100);
+
+            setTimeout(() => {
+                document.querySelector('.loading-bar').classList.remove('active');
+            }, 2600);
+        });
+
+        // Enhanced scroll animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('active');
+                    
+                    // Animate stat bars
+                    if (entry.target.classList.contains('stat-item')) {
+                        const fill = entry.target.querySelector('.stat-fill');
+                        if (fill) {
+                            setTimeout(() => {
+                                fill.style.width = fill.dataset.value + '%';
+                            }, 200);
+                        }
+                    }
+                    
+                    // Animate counter numbers
+                    if (entry.target.classList.contains('stat-card')) {
+                        const value = entry.target.querySelector('.stat-value');
+                        if (value && !value.classList.contains('animated')) {
+                            value.classList.add('animated');
+                            animateValue(value);
+                        }
+                    }
                 }
             });
         }, observerOptions);
 
-        // Observe all cards
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.feature-card, .stat-card, .news-card');
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
+        // Observe elements
+        document.querySelectorAll('.section-header, .stat-item, .stat-card, .feature-card, .news-card, .ship-showcase').forEach(el => {
+            el.classList.add('scroll-reveal');
+            observer.observe(el);
+        });
+
+        // Animate counter with easing
+        function animateValue(element) {
+            const endValue = element.textContent;
+            const duration = 2500;
+            const start = 0;
+            const end = parseFloat(endValue.replace(/[^0-9.]/g, ''));
+            const isDecimal = endValue.includes('.');
+            const prefix = endValue.match(/[^0-9.]*/)[0];
+            const suffix = endValue.match(/[^0-9.]*$/)[0];
             
-            // Animate ship stats
-            const statFills = document.querySelectorAll('.stat-fill');
-            statFills.forEach(fill => {
-                const width = fill.style.width;
-                fill.style.width = '0';
-                setTimeout(() => {
-                    fill.style.width = width;
-                }, 500);
+            let startTimestamp = null;
+            
+            const easeOutQuad = t => t * (2 - t);
+            
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const easedProgress = easeOutQuad(progress);
+                const currentValue = Math.floor(easedProgress * (end - start) + start);
+                
+                if (isDecimal) {
+                    element.textContent = prefix + currentValue.toFixed(1) + suffix;
+                } else {
+                    element.textContent = prefix + currentValue.toLocaleString() + suffix;
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    element.textContent = endValue;
+                }
+            };
+            
+            window.requestAnimationFrame(step);
+        }
+
+        // Enhanced parallax effect
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        function updateParallax() {
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+
+            // Move glow effects
+            document.querySelectorAll('.glow').forEach((glow, index) => {
+                const speed = (index + 1) * 15;
+                glow.style.transform = `translate(${targetX * speed}px, ${targetY * speed}px)`;
             });
 
-            // Update timestamp
-            function updateTimestamp() {
-                const now = new Date();
-                const time = now.toTimeString().split(' ')[0];
-                const date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-                
-                document.querySelector('.timestamp-time').textContent = time;
-                document.querySelector('.timestamp-date').textContent = date;
+            // Move hero content with subtle effect
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                heroContent.style.transform = `translate(${targetX * 5}px, ${targetY * 5}px)`;
+            }
+
+            // Move grid layers
+            const gridDots = document.querySelector('.grid-layer.dots');
+            if (gridDots) {
+                gridDots.style.transform = `translate(${targetX * 3}px, ${targetY * 3}px)`;
+            }
+
+            requestAnimationFrame(updateParallax);
+        }
+        updateParallax();
+
+        // Smooth scroll with offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 100;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Enhanced scroll indicator on nav
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
             }
             
-            updateTimestamp();
-            setInterval(updateTimestamp, 1000);
+            // Hide/show nav on scroll
+            if (currentScroll > lastScroll && currentScroll > 300) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
 
-            // Loading bar animation
-            const loadingBar = document.getElementById('loadingBar');
-            loadingBar.classList.add('active');
+        // Create particle effects on click
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+            
+            createExplosion(e.clientX, e.clientY);
+        });
+
+        function createExplosion(x, y) {
+            for (let i = 0; i < 8; i++) {
+                createParticle(x, y);
+            }
+        }
+
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            particle.style.width = '3px';
+            particle.style.height = '3px';
+            particle.style.background = Math.random() > 0.5 ? '#FF4500' : '#FF6B35';
+            particle.style.borderRadius = '50%';
+            particle.style.boxShadow = '0 0 6px currentColor';
+            
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 80 + 40;
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity;
+            const tx2 = tx * 1.5;
+            const ty2 = ty * 1.5 + 50;
+            
+            particle.style.setProperty('--tx', tx + 'px');
+            particle.style.setProperty('--ty', ty + 'px');
+            particle.style.setProperty('--tx2', tx2 + 'px');
+            particle.style.setProperty('--ty2', ty2 + 'px');
+            
+            document.body.appendChild(particle);
+            
             setTimeout(() => {
-                loadingBar.classList.remove('active');
-            }, 2000);
+                particle.classList.add('active');
+            }, 10);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        }
+
+        // Add hover tilt effect to cards
+        document.querySelectorAll('.feature-card, .news-card, .stat-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        // Add typing effect to hero tagline
+        const tagline = document.querySelector('.hero-tagline');
+        if (tagline) {
+            const text = tagline.textContent;
+            tagline.textContent = '';
+            tagline.style.opacity = '1';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    tagline.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            };
+            
+            setTimeout(typeWriter, 1000);
+        }
+
+        // Initialize page with fade-in
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 1s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Start animations
+            document.querySelectorAll('.stat-fill').forEach(fill => {
+                fill.style.width = '0';
+            });
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Close any open modals or reset UI
+                document.querySelectorAll('.active').forEach(el => {
+                    if (!el.classList.contains('game-content')) {
+                        el.classList.remove('active');
+                    }
+                });
+            }
+        });
+
+        // Performance optimization - throttle scroll events
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                window.cancelAnimationFrame(scrollTimeout);
+            }
+            scrollTimeout = window.requestAnimationFrame(() => {
+                // Update UI based on scroll
+            });
         });
     </script>
 </body>
