@@ -84,13 +84,17 @@
                     <div class="terminal-body">
                         <p class="terminal-description">Enter your Email for Star Atlas Early Access and a receive a [bribe]</p>
                         <form class="early-access-form" onsubmit="submitEarlyAccessInline(event)">
-                            <input 
-                                type="email" 
-                                id="heroEmailInput" 
-                                placeholder="Email Address" 
-                                required
-                                class="hero-email-input"
-                            />
+                            <div class="email-input-wrapper">
+                                <input 
+                                    type="email" 
+                                    id="heroEmailInput" 
+                                    placeholder="Email Address" 
+                                    required
+                                    class="hero-email-input"
+                                    oninput="updateEmailDisplay(this)"
+                                />
+                                <div class="email-display" id="emailDisplay"></div>
+                            </div>
                             <div class="button-wrapper">
                                 <div class="corner-bracket top-left"></div>
                                 <div class="corner-bracket top-right"></div>
@@ -931,6 +935,22 @@
         }
         
         // Check if content was previously unlocked
+        // Email input display handler
+        function updateEmailDisplay(input) {
+            const display = document.getElementById('emailDisplay');
+            const value = input.value;
+            
+            if (value.includes('@')) {
+                const [localPart, domainPart] = value.split('@');
+                display.innerHTML = `<span class="email-local">${localPart}</span><span class="email-domain">@${domainPart}</span>`;
+            } else {
+                display.innerHTML = `<span class="email-local">${value}</span>`;
+            }
+            
+            // Show/hide display based on input
+            display.style.opacity = value ? '1' : '0';
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('contentUnlocked') === 'true') {
                 unlockContent();

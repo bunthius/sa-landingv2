@@ -27,6 +27,28 @@
     box-sizing: border-box;
 }
 
+/* Text Selection */
+::selection {
+    background-color: #32feff !important;
+    color: #000 !important;
+}
+
+::-moz-selection {
+    background-color: #32feff !important;
+    color: #000 !important;
+}
+
+/* Ensure selection works everywhere */
+*::selection {
+    background-color: #32feff !important;
+    color: #000 !important;
+}
+
+*::-moz-selection {
+    background-color: #32feff !important;
+    color: #000 !important;
+}
+
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
@@ -722,13 +744,20 @@ body.content-unlocked .hero {
     justify-content: space-between;
 }
 
-.hero-email-input {
+/* Email input wrapper for overlay effect */
+.email-input-wrapper {
+    position: relative;
     flex: 1 1 0;
+    min-width: 0;
+}
+
+.hero-email-input {
+    width: 100%;
     padding: 1rem 1.5rem;
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 0;
-    color: var(--text-primary);
+    color: transparent;
     font-size: 0.875rem;
     font-family: 'Tabular', monospace;
     font-weight: 400;
@@ -736,17 +765,52 @@ body.content-unlocked .hero {
     letter-spacing: 0.05em;
     position: relative;
     box-sizing: border-box;
-    min-width: 0;
+    caret-color: white;
+}
+
+/* Email display overlay */
+.email-display {
+    position: absolute;
+    top: 50%;
+    left: 1.5rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 0.875rem;
+    font-family: 'Tabular', monospace;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.email-display .email-local {
+    color: var(--text-primary);
+}
+
+.email-display .email-domain {
+    color: #32feff;
 }
 
 .hero-email-input::placeholder {
     color: rgba(255, 255, 255, 0.3);
 }
 
+/* Show placeholder when empty */
+.hero-email-input:placeholder-shown {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Email display starts hidden */
+.email-display {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
 .hero-email-input:focus {
     outline: none;
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 1);
     background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .hero-submit-btn {
@@ -864,11 +928,7 @@ body.content-unlocked .hero {
 .hero-submit-btn:hover:not(:disabled) {
     background: #5affff;
     border-color: #5affff;
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 
-        0 6px 20px rgba(50, 254, 255, 0.4),
-        0 0 40px rgba(50, 254, 255, 0.2),
-        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -886,29 +946,7 @@ body.content-unlocked .hero {
 /* Animate corner brackets on hover */
 .button-wrapper:hover .corner-bracket {
     border-color: #fff;
-    width: 18px;
-    height: 18px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-.button-wrapper:hover .corner-bracket.top-left {
-    top: -10px;
-    left: -10px;
-}
-
-.button-wrapper:hover .corner-bracket.top-right {
-    top: -10px;
-    right: -10px;
-}
-
-.button-wrapper:hover .corner-bracket.bottom-left {
-    bottom: -10px;
-    left: -10px;
-}
-
-.button-wrapper:hover .corner-bracket.bottom-right {
-    bottom: -10px;
-    right: -10px;
+    transform: translateY(-2px);
 }
 
 .hero-submit-btn:disabled {
