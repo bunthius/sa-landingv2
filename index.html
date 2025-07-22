@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star Atlas - Your Starfaring Reality</title>
+    <title>Star Atlas - Explore, Conquer, and Earn in a real cash economy.</title>
     <link rel="icon" type="image/png" href="Icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -27,38 +27,28 @@
     </div>
 
     <!-- Navigation -->
-    <nav>
-        <div class="nav-top">
-            <a href="#news">NEWS</a>
-            <a href="#events">EVENTS</a>
-            <a href="#support">SUPPORT</a>
-            <a href="#language">ENGLISH</a>
-        </div>
+    <nav class="gated-content" style="display: none;">
+
         <div class="nav-main">
             <div class="nav-container">
                 <div class="logo">
                     <img src="Logo.svg" alt="Star Atlas">
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#game-info">Game Info</a></li>
-                    <li><a href="#ships">Ships</a></li>
-                    <li><a href="#factions">Factions</a></li>
-                    <li><a href="#economy">Economy</a></li>
-                    <li><a href="#community">Community</a></li>
+                    <li class="has-dropdown">
+                        <a href="#game">Game</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/">Star Atlas</a></li>
+                            <li><a href="/sage-labs">SAGE Labs</a></li>
+                            <li><a href="/holosim">Holosim</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="https://legacy.staratlas.com/#experience" target="_blank">Experience</a></li>
+                    <li><a href="https://staratlas.com/newsroom" target="_blank">News & Info</a></li>
+                    <li><a href="https://staratlas.com/contact" target="_blank">Contact</a></li>
                 </ul>
                 <div class="nav-cta">
-                    <div class="platform-icons">
-                        <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                        <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                        <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                    </div>
-                    <button class="download-btn">Download</button>
+                    <a href="https://play.staratlas.com/market/" target="_blank" class="download-btn">Galactic Marketplace</a>
                 </div>
             </div>
         </div>
@@ -66,137 +56,78 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <!-- Video Background Placeholder -->
+        <!-- Video Background -->
         <video class="video-background" autoplay muted loop playsinline>
-            <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4">
+            <source src="src/herosection_loop_7-21-hb3.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
         
-        <div class="hero-content">
+        <div class="hero-content center-bottom" id="heroContent">
             <img src="Logo.svg" alt="Star Atlas" class="hero-logo">
-            <p class="hero-tagline">Your Starfaring Reality Powered by a Real Cash Economy</p>
+                            <div class="hero-tagline">
+                    <span>EXPLORE, CONQUER, AND EARN</span>
+                    <span>IN A REAL CASH ECONOMY</span>
+                </div>
             <div class="hero-cta">
-                <a href="#play" class="play-btn">Play Now</a>
-                <a href="#trailer" class="watch-trailer-btn">
-                    <span>▶</span>
-                    Watch Trailer
-                </a>
+                <div class="terminal-box">
+                    <div class="terminal-header">
+                        <div class="terminal-icon-box">
+                            <img src="Icon.svg" alt="Star Atlas" class="terminal-icon">
+                        </div>
+                        <span class="terminal-title">EARLY ACCESS</span>
+                        <button class="terminal-close" onclick="bypassEmailGate(event)" aria-label="Close">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="terminal-body">
+                        <p class="terminal-description">Enter your Email for Star Atlas Early Access and a receive a [bribe]</p>
+                        <form class="early-access-form" onsubmit="submitEarlyAccessInline(event)">
+                            <input 
+                                type="email" 
+                                id="heroEmailInput" 
+                                placeholder="Email Address" 
+                                required
+                                class="hero-email-input"
+                            />
+                            <div class="button-wrapper">
+                                <div class="corner-bracket top-left"></div>
+                                <div class="corner-bracket top-right"></div>
+                                <div class="corner-bracket bottom-left"></div>
+                                <div class="corner-bracket bottom-right"></div>
+                                <button type="submit" class="hero-submit-btn"><span>GET EARLY ACCESS NOW</span></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="terminal-footer">
+                        <div class="star-atlas-log" id="starAtlasLog">
+                            <span class="log-date">2625.07.22</span>
+                            <span class="log-time">00:00:00</span>
+                        </div>
+                    </div>
+                    <div class="bottom-corners"></div>
+                </div>
+                <div id="heroMessage" class="hero-message" style="display: none;"></div>
             </div>
         </div>
     </section>
 
-    <!-- News Section -->
-    <section class="news-section">
+
+
+
+
+    <!-- Gated Content Container -->
+    <div id="gatedContent" class="gated-sections" style="display: none;">
+    
+    <!-- Game Section -->
+    <section class="game-section" id="game">
         <div class="section-header">
             <span class="section-number">0001.</span>
-            <h2 class="section-title">Latest Updates</h2>
+            <h2 class="section-title">GAME</h2>
             <div class="section-line"></div>
         </div>
-        
-        <div class="news-nav">
-            <button class="active">All</button>
-            <button>Patch Notes</button>
-            <button>Events</button>
-            <button>Dev Blog</button>
-        </div>
-        
-        <div class="news-grid">
-            <div class="news-card">
-                <div class="news-image">
-                    <span class="news-badge">New Season</span>
-                </div>
-                <div class="news-content">
-                    <p class="news-date">2625.12.18</p>
-                    <h3 class="news-headline">Season 2: Faction Wars Begin</h3>
-                    <p class="news-excerpt">Battle for control of the galaxy as faction warfare intensifies. Choose your side and fight for territory in this epic new season.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <div class="news-image">
-                    <span class="news-badge">Update</span>
-                </div>
-                <div class="news-content">
-                    <p class="news-date">2625.12.15</p>
-                    <h3 class="news-headline">Patch 2.5.1: Balance Updates</h3>
-                    <p class="news-excerpt">Major ship balance changes, new weapons added, and performance improvements across all systems.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <div class="news-image">
-                    <span class="news-badge">Event</span>
-                </div>
-                <div class="news-content">
-                    <p class="news-date">2625.12.12</p>
-                    <h3 class="news-headline">Holiday Event: Frozen Nebula</h3>
-                    <p class="news-excerpt">Special limited-time event with exclusive rewards. Explore the mysterious Frozen Nebula and uncover its secrets.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ships Section -->
-    <section class="ships-section">
-        <div class="section-header">
-            <span class="section-number">0002.</span>
-            <h2 class="section-title">Command Your Fleet</h2>
-            <div class="section-line"></div>
-        </div>
-        <p class="section-subtitle">Pilot legendary ships across the galaxy</p>
-        
-        <div class="ship-showcase">
-            <div class="ship-info">
-                <h3>VZUS OPOD</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                    The pinnacle of human engineering, this capital ship commands respect across all star systems. 
-                    Built for both exploration and combat, the VZUS Opod is the flagship of the human faction.
-                </p>
-                
-                <div class="ship-stats">
-                    <div class="stat-item">
-                        <div class="stat-label">Speed</div>
-                        <div class="stat-bar">
-                            <div class="stat-fill" style="width: 70%"></div>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Firepower</div>
-                        <div class="stat-bar">
-                            <div class="stat-fill" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Defense</div>
-                        <div class="stat-bar">
-                            <div class="stat-fill" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Cargo</div>
-                        <div class="stat-bar">
-                            <div class="stat-fill" style="width: 95%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <a href="#ships" class="secondary-btn" style="margin-top: 2rem;">View All Ships</a>
-            </div>
-            
-            <div class="ship-visual">
-                🚀
-            </div>
-        </div>
-    </section>
-
-    <!-- Game Toggle Section -->
-    <section class="game-section">
-        <div class="section-header">
-            <span class="section-number">0003.</span>
-            <h2 class="section-title">Game Modes</h2>
-            <div class="section-line"></div>
-        </div>
-        <p class="section-subtitle">Choose your preferred gameplay style in the Star Atlas universe</p>
+        <p class="section-subtitle">Immerse yourself in the vastness of Galia, where Star Atlas comes alive.</p>
         
         <div class="toggle-container">
             <button class="toggle-btn active" onclick="showGameMode('3rdperson')">3rd Person Experience</button>
@@ -206,41 +137,82 @@
         <!-- 3rd Person Content -->
         <div id="3rdperson" class="game-content active">
             <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 0 auto 3rem;">
-                Immerse yourself in a breathtaking universe where you captain your ship through vast galaxies, 
-                explore alien worlds, and engage in thrilling combat.
+                Join the fight for resources and territory with intense ship-to-ship and FPS combat, exploration, 
+                crafting, and quests.
             </p>
             
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3 class="feature-title">Space Exploration</h3>
-                    <p class="feature-description">
-                        Navigate through stunning star systems and discover hidden sectors in the infinite cosmos.
-                    </p>
+            <!-- Video Carousel -->
+            <div class="video-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carousel-3rd">
+                        <!-- Slide 1: Galia -->
+                        <div class="carousel-slide active">
+                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_1_ImageThumbnail.png" controls>
+                                <source src="src/GAME section/3rd Person Experience/Slide_1_Galia.mp4" type="video/mp4">
+                            </video>
+                            <h3 class="slide-title">Galia</h3>
+                            <p class="slide-description">Explore the unexplored. Set sail across uncharted territories, establish trade routes, and build a galactic empire.</p>
+                            <a href="/game" class="slide-link">Learn More →</a>
+                        </div>
+                        
+                        <!-- Slide 2: Game Modes -->
+                        <div class="carousel-slide">
+                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_2_ImageThumbnail.png" controls>
+                                <source src="src/GAME section/3rd Person Experience/Slide_2_GameModes.mp4" type="video/mp4">
+                            </video>
+                            <h3 class="slide-title">Game Modes</h3>
+                            <p class="slide-description">Conquer Galia, then crush the competition. Choose your path through exploration, combat, and strategic dominance.</p>
+                            <a href="/game" class="slide-link">Learn More →</a>
+                        </div>
+                        
+                        <!-- Slide 3: Your Fleet Your Way -->
+                        <div class="carousel-slide">
+                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_3_ImageThumbnail.png" controls>
+                                <source src="src/GAME section/3rd Person Experience/Slide_3_YourFleetYourWay.mp4" type="video/mp4">
+                            </video>
+                            <h3 class="slide-title">Your Fleet, Your Way</h3>
+                            <p class="slide-description">View, build, and customise your fleet with complete control over every aspect of your ships.</p>
+                            <a href="/game" class="slide-link">Learn More →</a>
+                        </div>
+                        
+                        <!-- Slide 4: Life in Galia -->
+                        <div class="carousel-slide">
+                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_4_ImageThumbnail.png" controls>
+                                <source src="src/GAME section/3rd Person Experience/Slide_4_LifeinGalia.mp4" type="video/mp4">
+                            </video>
+                            <h3 class="slide-title">Life in Galia</h3>
+                            <p class="slide-description">From the small, furred Punaabs to luminous beings of pure light, discover the diverse inhabitants of the galaxy.</p>
+                            <a href="/game" class="slide-link">Learn More →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Navigation -->
+                    <button class="carousel-btn carousel-prev" onclick="changeSlide('3rd', -1)">‹</button>
+                    <button class="carousel-btn carousel-next" onclick="changeSlide('3rd', 1)">›</button>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators">
+                        <span class="indicator active" onclick="goToSlide('3rd', 0)"></span>
+                        <span class="indicator" onclick="goToSlide('3rd', 1)"></span>
+                        <span class="indicator" onclick="goToSlide('3rd', 2)"></span>
+                        <span class="indicator" onclick="goToSlide('3rd', 3)"></span>
+                    </div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h3 class="feature-title">Planet Exploration</h3>
-                    <p class="feature-description">
-                        Seamlessly transition from space to planetary surfaces without loading screens.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">⚔️</div>
-                    <h3 class="feature-title">Shooter Modes</h3>
-                    <p class="feature-description">
-                        Engage in intense FPS combat on foot or in vehicles with various tactical options.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3 class="feature-title">Customization</h3>
-                    <p class="feature-description">
-                        Personalize your ships, characters, and equipment with unique cosmetics.
-                    </p>
+                <!-- Thumbnail Carousel -->
+                <div class="thumbnail-carousel">
+                    <div class="thumbnail-item active" onclick="goToSlide('3rd', 0)">
+                        <img src="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_1_ImageThumbnail.png" alt="Galia">
+                    </div>
+                    <div class="thumbnail-item" onclick="goToSlide('3rd', 1)">
+                        <img src="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_2_ImageThumbnail.png" alt="Game Modes">
+                    </div>
+                    <div class="thumbnail-item" onclick="goToSlide('3rd', 2)">
+                        <img src="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_3_ImageThumbnail.png" alt="Your Fleet, Your Way">
+                    </div>
+                    <div class="thumbnail-item" onclick="goToSlide('3rd', 3)">
+                        <img src="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_4_ImageThumbnail.png" alt="Life in Galia">
+                    </div>
                 </div>
             </div>
         </div>
@@ -252,98 +224,120 @@
                 shape the political landscape of the galaxy.
             </p>
             
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3 class="feature-title">SAGE Labs</h3>
-                    <p class="feature-description">
-                        Currently available test environment for the economy system and resource management.
-                    </p>
+            <!-- Video Carousel -->
+            <div class="video-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carousel-rts">
+                        <!-- Slide 1: Fleet Command -->
+                        <div class="carousel-slide active">
+                            <video class="carousel-video" poster="src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png" controls>
+                                <source src="src/GAME section/Top-down RTS View/TDS_Slide_1_FleetCommand.mp4" type="video/mp4">
+                            </video>
+                            <h3 class="slide-title">Fleet Command</h3>
+                            <p class="slide-description">Mass-manage your fleets from a strategic view, coordinating complex operations across the galaxy.</p>
+                            <a href="/game" class="slide-link">Learn More →</a>
+                        </div>
+                        
+                        <!-- Slide 2: Holosim -->
+                        <div class="carousel-slide">
+                            <video class="carousel-video" poster="src/GAME section/Top-down RTS View/Thumbnail Images/Slide_1_Holosim_Thumbnail.png" controls>
+                                <source src="src/GAME section/Top-down RTS View/Slide_2_Holosim.mp4" type="video/mp4">
+                            </video>
+                            <h3 class="slide-title">Holosim</h3>
+                            <p class="slide-description">Free-to-play in-browser simulation offering strategic gameplay without barriers.</p>
+                            <a href="/game" class="slide-link">Learn More →</a>
+                        </div>
+                        
+                        <!-- Slide 3: SAGE Labs -->
+                        <div class="carousel-slide">
+                            <video class="carousel-video" poster="src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png" controls>
+                                <source src="src/GAME section/Top-down RTS View/TDS_Slide_1_FleetCommand.mp4" type="video/mp4">
+                            </video>
+                            <h3 class="slide-title">SAGE Labs</h3>
+                            <p class="slide-description">Mine resources, craft items, scan for SDUs, and build your economic empire.</p>
+                            <a href="/game" class="slide-link">Learn More →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Navigation -->
+                    <button class="carousel-btn carousel-prev" onclick="changeSlide('rts', -1)">‹</button>
+                    <button class="carousel-btn carousel-next" onclick="changeSlide('rts', 1)">›</button>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators">
+                        <span class="indicator active" onclick="goToSlide('rts', 0)"></span>
+                        <span class="indicator" onclick="goToSlide('rts', 1)"></span>
+                        <span class="indicator" onclick="goToSlide('rts', 2)"></span>
+                    </div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">⚓</div>
-                    <h3 class="feature-title">Fleet Command</h3>
-                    <p class="feature-description">
-                        Command multiple ships in large-scale battles and dominate star systems.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🏛️</div>
-                    <h3 class="feature-title">Political Domination</h3>
-                    <p class="feature-description">
-                        Influence the galaxy through diplomacy, trade, or force to shape the future.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">💎</div>
-                    <h3 class="feature-title">Resource Management</h3>
-                    <p class="feature-description">
-                        Mine, trade, and craft in a complex economic system to build your empire.
-                    </p>
+                <!-- Thumbnail Carousel -->
+                <div class="thumbnail-carousel">
+                    <div class="thumbnail-item active" onclick="goToSlide('rts', 0)">
+                        <img src="src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png" alt="Fleet Command">
+                    </div>
+                    <div class="thumbnail-item" onclick="goToSlide('rts', 1)">
+                        <img src="src/GAME section/Top-down RTS View/Thumbnail Images/Slide_1_Holosim_Thumbnail.png" alt="Holosim">
+                    </div>
+                    <div class="thumbnail-item" onclick="goToSlide('rts', 2)">
+                        <img src="src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png" alt="SAGE Labs">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Economy Section -->
-    <section class="economy-section">
+    <section class="economy-section" id="economy">
         <div class="section-header">
-            <span class="section-number">0004.</span>
+            <span class="section-number">0002.</span>
             <h2 class="section-title">Economy</h2>
             <div class="section-line"></div>
         </div>
-        <p class="section-subtitle">Join a thriving galactic marketplace with real economic opportunities</p>
+        <p class="section-subtitle">Join a real cash economy with real opportunities.</p>
         
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-value">$42.5M</div>
+                <div class="stat-value">$68.3M</div>
                 <div class="stat-label">Total Volume Traded</div>
             </div>
             
             <div class="stat-card">
-                <div class="stat-value">$8.2M</div>
+                <div class="stat-value">$21.1M</div>
                 <div class="stat-label">Annual GDP</div>
             </div>
             
             <div class="stat-card">
-                <div class="stat-value">$15K+</div>
-                <div class="stat-label">Top Earner Monthly</div>
+                <div class="stat-value">9.69M</div>
+                <div class="stat-label">Average ATLAS Earned Daily</div>
             </div>
         </div>
         
         <div class="economy-cta">
-            <a href="#report" class="secondary-btn">View Economic Report</a>
-            <a href="#marketplace" class="secondary-btn">Explore Galactic Marketplace</a>
+            <a href="https://staratlas.com/newsroom/economic-reports" target="_blank" class="secondary-btn">Latest Economic Report</a>
+            <a href="https://play.staratlas.com/market/" target="_blank" class="secondary-btn">Explore Galactic Marketplace</a>
         </div>
     </section>
 
     <!-- Community Section -->
-    <section class="community-section">
+    <section class="community-section" id="community">
         <div class="section-header">
-            <span class="section-number">0005.</span>
+            <span class="section-number">0003.</span>
             <h2 class="section-title">Community</h2>
             <div class="section-line"></div>
         </div>
         <p class="community-description">
-            Ready to answer all of your questions. Connect with thousands of players, 
-            find your crew, and start your journey among the stars.
+            Join a community of pioneers, ready to answer all of your questions.
         </p>
         <div class="community-links">
             <a href="#discord" class="community-btn discord-btn">
                 <span>💬</span>
                 Discord
             </a>
-            <a href="#twitter" class="community-btn twitter-btn">
-                <span>𝕏</span>
-                Twitter
-            </a>
-            <a href="#reddit" class="community-btn reddit-btn">
-                <span>📱</span>
-                Reddit
-            </a>
+        </div>
+        <!-- Community Image -->
+        <div class="community-image-container" style="margin-top: 3rem; text-align: center;">
+            <img src="src/Community_Website_july22.png" alt="Star Atlas Community" class="community-image" style="max-width: 100%; height: auto; border-radius: 10px;">
         </div>
     </section>
 
@@ -398,15 +392,17 @@
             </div>
         </div>
     </footer>
+    
+    </div> <!-- End of Gated Content -->
 
     <!-- Scan Line Effect -->
     <div class="scan-line"></div>
 
     <!-- Timestamp Widget -->
-    <div class="timestamp">
-        <div class="timestamp-time" id="timestamp-time">00:00:00</div>
-        <div class="timestamp-date" id="timestamp-date">Jan 01, 2625</div>
-    </div>
+<div class="timestamp gated-content" style="display: none;">
+    <div class="timestamp-time" id="timestamp-time">00:00:00</div>
+    <div class="timestamp-date" id="timestamp-date">Jan 01, 2625</div>
+</div>
 
     <script>
         // Toggle game content
@@ -416,6 +412,77 @@
             
             event.target.classList.add('active');
             document.getElementById(mode).classList.add('active');
+        }
+
+        // Video Carousel Functions
+        const carousels = {
+            '3rd': { currentSlide: 0, totalSlides: 4 },
+            'rts': { currentSlide: 0, totalSlides: 3 }
+        };
+
+        function changeSlide(carouselId, direction) {
+            const carousel = carousels[carouselId];
+            const track = document.getElementById(`carousel-${carouselId}`);
+            const slides = track.querySelectorAll('.carousel-slide');
+            const indicators = track.parentElement.querySelectorAll('.indicator');
+            const thumbnails = track.parentElement.parentElement.querySelectorAll('.thumbnail-item');
+            
+            // Hide current slide
+            slides[carousel.currentSlide].classList.remove('active');
+            indicators[carousel.currentSlide].classList.remove('active');
+            if (thumbnails[carousel.currentSlide]) {
+                thumbnails[carousel.currentSlide].classList.remove('active');
+            }
+            
+            // Calculate new slide index
+            carousel.currentSlide += direction;
+            if (carousel.currentSlide >= carousel.totalSlides) {
+                carousel.currentSlide = 0;
+            } else if (carousel.currentSlide < 0) {
+                carousel.currentSlide = carousel.totalSlides - 1;
+            }
+            
+            // Show new slide
+            slides[carousel.currentSlide].classList.add('active');
+            indicators[carousel.currentSlide].classList.add('active');
+            if (thumbnails[carousel.currentSlide]) {
+                thumbnails[carousel.currentSlide].classList.add('active');
+            }
+            
+            // Pause all videos
+            slides.forEach(slide => {
+                const video = slide.querySelector('video');
+                if (video) video.pause();
+            });
+        }
+
+        function goToSlide(carouselId, slideIndex) {
+            const carousel = carousels[carouselId];
+            const track = document.getElementById(`carousel-${carouselId}`);
+            const slides = track.querySelectorAll('.carousel-slide');
+            const indicators = track.parentElement.querySelectorAll('.indicator');
+            const thumbnails = track.parentElement.parentElement.querySelectorAll('.thumbnail-item');
+            
+            // Hide current slide
+            slides[carousel.currentSlide].classList.remove('active');
+            indicators[carousel.currentSlide].classList.remove('active');
+            if (thumbnails[carousel.currentSlide]) {
+                thumbnails[carousel.currentSlide].classList.remove('active');
+            }
+            
+            // Show new slide
+            carousel.currentSlide = slideIndex;
+            slides[carousel.currentSlide].classList.add('active');
+            indicators[carousel.currentSlide].classList.add('active');
+            if (thumbnails[carousel.currentSlide]) {
+                thumbnails[carousel.currentSlide].classList.add('active');
+            }
+            
+            // Pause all videos
+            slides.forEach(slide => {
+                const video = slide.querySelector('video');
+                if (video) video.pause();
+            });
         }
 
         // Update timestamp every second with correct future date
@@ -433,6 +500,27 @@
             
             document.getElementById('timestamp-time').textContent = time;
             document.getElementById('timestamp-date').textContent = date;
+            
+            // Update Star Atlas Log timestamp
+            const starAtlasLog = document.getElementById('starAtlasLog');
+            if (starAtlasLog) {
+                const logDate = starAtlasLog.querySelector('.log-date');
+                const logTime = starAtlasLog.querySelector('.log-time');
+                
+                if (logDate && logTime) {
+                    // Format date as YYYY.MM.DD
+                    const year = futureDate.getFullYear();
+                    const month = String(futureDate.getMonth() + 1).padStart(2, '0');
+                    const day = String(futureDate.getDate()).padStart(2, '0');
+                    logDate.textContent = `${year}.${month}.${day}`;
+                    
+                    // Format time as HH:MM:SS
+                    const hours = String(futureDate.getHours()).padStart(2, '0');
+                    const minutes = String(futureDate.getMinutes()).padStart(2, '0');
+                    const seconds = String(futureDate.getSeconds()).padStart(2, '0');
+                    logTime.textContent = `${hours}:${minutes}:${seconds}`;
+                }
+            }
         }
         setInterval(updateTimestamp, 1000);
         updateTimestamp();
@@ -562,11 +650,11 @@
                 glow.style.transform = `translate(${targetX * speed}px, ${targetY * speed}px)`;
             });
 
-            // Move hero content with subtle effect
-            const heroContent = document.querySelector('.hero-content');
-            if (heroContent) {
-                heroContent.style.transform = `translate(${targetX * 5}px, ${targetY * 5}px)`;
-            }
+            // Move hero content with subtle effect - DISABLED
+            // const heroContent = document.querySelector('.hero-content');
+            // if (heroContent) {
+            //     heroContent.style.transform = `translate(${targetX * 5}px, ${targetY * 5}px)`;
+            // }
 
             // Move grid layers
             const gridDots = document.querySelector('.grid-layer.dots');
@@ -616,52 +704,7 @@
             lastScroll = currentScroll;
         });
 
-        // Create particle effects on click
-        document.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
-            
-            createExplosion(e.clientX, e.clientY);
-        });
 
-        function createExplosion(x, y) {
-            for (let i = 0; i < 8; i++) {
-                createParticle(x, y);
-            }
-        }
-
-        function createParticle(x, y) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = x + 'px';
-            particle.style.top = y + 'px';
-            particle.style.width = '3px';
-            particle.style.height = '3px';
-            particle.style.background = Math.random() > 0.5 ? '#FF4500' : '#FF6B35';
-            particle.style.borderRadius = '50%';
-            particle.style.boxShadow = '0 0 6px currentColor';
-            
-            const angle = Math.random() * Math.PI * 2;
-            const velocity = Math.random() * 80 + 40;
-            const tx = Math.cos(angle) * velocity;
-            const ty = Math.sin(angle) * velocity;
-            const tx2 = tx * 1.5;
-            const ty2 = ty * 1.5 + 50;
-            
-            particle.style.setProperty('--tx', tx + 'px');
-            particle.style.setProperty('--ty', ty + 'px');
-            particle.style.setProperty('--tx2', tx2 + 'px');
-            particle.style.setProperty('--ty2', ty2 + 'px');
-            
-            document.body.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.classList.add('active');
-            }, 10);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 1000);
-        }
 
         // Add hover tilt effect to cards
         document.querySelectorAll('.feature-card, .news-card, .stat-card').forEach(card => {
@@ -682,19 +725,34 @@
             });
         });
 
-        // Add typing effect to hero tagline
+        // Add typing effect to hero tagline - works with span structure
         const tagline = document.querySelector('.hero-tagline');
         if (tagline) {
-            const text = tagline.textContent;
-            tagline.textContent = '';
+            const spans = tagline.querySelectorAll('span');
             tagline.style.opacity = '1';
             
-            let i = 0;
+            // Store the original text for each span
+            const originalTexts = Array.from(spans).map(span => span.textContent);
+            
+            // Clear all spans initially
+            spans.forEach(span => span.textContent = '');
+            
+            // Type each span sequentially
+            let currentSpan = 0;
+            let currentChar = 0;
+            
             const typeWriter = () => {
-                if (i < text.length) {
-                    tagline.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50);
+                if (currentSpan < spans.length) {
+                    if (currentChar < originalTexts[currentSpan].length) {
+                        spans[currentSpan].textContent += originalTexts[currentSpan].charAt(currentChar);
+                        currentChar++;
+                        setTimeout(typeWriter, 50);
+                    } else {
+                        // Move to next span
+                        currentSpan++;
+                        currentChar = 0;
+                        setTimeout(typeWriter, 100); // Small pause between lines
+                    }
                 }
             };
             
@@ -737,6 +795,255 @@
                 // Update UI based on scroll
             });
         });
+
+        // Early Access Functions
+        async function submitEarlyAccessInline(e) {
+            e.preventDefault();
+            const email = document.getElementById('heroEmailInput').value;
+            const submitBtn = e.target.querySelector('.hero-submit-btn');
+            const messageDiv = document.getElementById('heroMessage');
+            const form = document.querySelector('.early-access-form');
+            const bypassLink = document.querySelector('.bypass-link');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            messageDiv.style.display = 'none';
+            
+            // For local testing, always use mock response
+            const isLocalhost = window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1' ||
+                               window.location.hostname === '' ||
+                               window.location.protocol === 'file:';
+            
+            if (isLocalhost || !navigator.onLine) {
+                // Simulate API delay
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Mock successful response
+                const mockKey = 'TEST-KEY-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                messageDiv.innerHTML = `
+                    <div class="success-inline">
+                        <p>Success! Your early access key: <strong>${mockKey}</strong></p>
+                        <button onclick="copyAccessKeyInline('${mockKey}')" class="copy-btn-inline">Copy Key</button>
+                    </div>
+                `;
+                messageDiv.className = 'hero-message success';
+                messageDiv.style.display = 'block';
+                
+                // Hide form and bypass link
+                form.style.display = 'none';
+                if (bypassLink) bypassLink.style.display = 'none';
+                
+                // Unlock content after delay
+                setTimeout(() => {
+                    unlockContent();
+                }, 2000);
+                
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'GET EARLY ACCESS NOW';
+                return; // Exit early, no need for try/catch
+            }
+            
+            try {
+                const response = await fetch('/api/early-access', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    messageDiv.innerHTML = `
+                        <div class="success-inline">
+                            <p>Success! Your early access key: <strong>${data.key || 'STAR-ATLAS-KEY-XXXX'}</strong></p>
+                            <button onclick="copyAccessKeyInline('${data.key || 'STAR-ATLAS-KEY-XXXX'}')" class="copy-btn-inline">Copy Key</button>
+                        </div>
+                    `;
+                    messageDiv.className = 'hero-message success';
+                    
+                    // Hide form and bypass link
+                    form.style.display = 'none';
+                    if (bypassLink) bypassLink.style.display = 'none';
+                    
+                    // Unlock content after successful email submission
+                    setTimeout(() => {
+                        unlockContent();
+                    }, 2000); // Give user time to see success message
+                } else {
+                    messageDiv.textContent = data.message || 'An error occurred. Please try again.';
+                    messageDiv.className = 'hero-message error';
+                }
+                messageDiv.style.display = 'block';
+            } catch (error) {
+                // This shouldn't happen with our local testing logic, but just in case
+                console.error('Error:', error);
+                messageDiv.textContent = 'An error occurred. Please try again.';
+                messageDiv.className = 'hero-message error';
+                messageDiv.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'GET EARLY ACCESS NOW';
+            }
+        }
+
+        function copyAccessKeyInline(key) {
+            navigator.clipboard.writeText(key).then(() => {
+                const copyBtn = document.querySelector('.copy-btn-inline');
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => copyBtn.textContent = 'Copy Key', 2000);
+            });
+        }
+        
+        // Unlock content function
+        function unlockContent() {
+            // Add class to body for styling
+            document.body.classList.add('content-unlocked');
+            
+            // Show gated content
+            document.getElementById('gatedContent').style.display = 'block';
+            
+            // Show navigation elements
+            document.querySelectorAll('.gated-content').forEach(el => {
+                el.style.display = '';
+            });
+            
+            // Move hero content to bottom-left
+            const heroContent = document.getElementById('heroContent');
+            const heroSection = document.querySelector('.hero');
+            heroContent.classList.remove('center-bottom');
+            heroContent.classList.add('bottom-left');
+            
+            // Change hero section alignment
+            heroSection.style.alignItems = 'flex-end';
+            heroSection.style.justifyContent = 'flex-start';
+            
+            // Store unlock state
+            localStorage.setItem('contentUnlocked', 'true');
+        }
+        
+        // Bypass email gate function
+        function bypassEmailGate(e) {
+            e.preventDefault();
+            
+            // The terminal box stays visible, X button acts as bypass
+            unlockContent();
+        }
+        
+        // Check if content was previously unlocked
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('contentUnlocked') === 'true') {
+                unlockContent();
+            }
+        });
+
+        // Legacy Modal Functions (keeping for compatibility)
+        function openEarlyAccessModal() {
+            document.getElementById('earlyAccessModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEarlyAccessModal() {
+            document.getElementById('earlyAccessModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        async function submitEarlyAccess(e) {
+            e.preventDefault();
+            const email = document.getElementById('earlyAccessEmail').value;
+            const submitBtn = document.getElementById('submitEarlyAccess');
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            const formContainer = document.getElementById('formContainer');
+            
+            // Clear previous messages
+            errorMsg.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            try {
+                const response = await fetch('/api/early-access', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Show success message with key
+                    formContainer.style.display = 'none';
+                    successMsg.style.display = 'block';
+                    document.getElementById('accessKey').textContent = data.key || 'STAR-ATLAS-KEY-XXXX';
+                } else {
+                    errorMsg.textContent = data.message || 'An error occurred. Please try again.';
+                    errorMsg.style.display = 'block';
+                }
+            } catch (error) {
+                errorMsg.textContent = 'Connection error. Please try again.';
+                errorMsg.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Get Access';
+            }
+        }
+
+        function copyAccessKey() {
+            const key = document.getElementById('accessKey').textContent;
+            navigator.clipboard.writeText(key).then(() => {
+                const copyBtn = document.querySelector('.copy-btn');
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => copyBtn.textContent = 'Copy', 2000);
+            });
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('earlyAccessModal');
+            if (event.target === modal) {
+                closeEarlyAccessModal();
+            }
+        }
     </script>
+
+    <!-- Early Access Modal -->
+    <div id="earlyAccessModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEarlyAccessModal()">&times;</span>
+            
+            <div id="formContainer">
+                <h2>Get Early Access</h2>
+                <p>Enter your email to receive your early access key</p>
+                
+                <form onsubmit="submitEarlyAccess(event)" class="modal-form">
+                    <input 
+                        type="email" 
+                        id="earlyAccessEmail" 
+                        placeholder="Enter your email" 
+                        required
+                        class="modal-input"
+                    />
+                    
+                    <p class="disclaimer">
+                        By entering your email, you'll get your early-access key and occasional updates from Star Atlas. You can unsubscribe anytime.
+                    </p>
+                    
+                    <button type="submit" id="submitEarlyAccess" class="modal-submit">Get Access</button>
+                </form>
+                
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </div>
+            
+            <div id="successMessage" class="success-container" style="display: none;">
+                <h2>Success!</h2>
+                <p>Your early access key:</p>
+                <div class="key-display">
+                    <span id="accessKey"></span>
+                    <button onclick="copyAccessKey()" class="copy-btn">Copy</button>
+                </div>
+                <p class="success-note">Check your email for instructions on how to use your key.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html> 
