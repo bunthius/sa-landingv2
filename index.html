@@ -437,18 +437,21 @@
                 <img src="Icon.svg" alt="Star Atlas" class="footer-bar-icon">
             </div>
             <div class="footer-bar-title">EARLY ACCESS</div>
-            <div class="footer-bar-left">
+            <div class="footer-bar-center">
                 <form class="footer-email-form" onsubmit="submitFooterEmail(event)">
-                    <input type="email" class="footer-email-input" placeholder="Join the early access list" required>
+                    <div class="footer-email-wrapper">
+                        <input type="email" class="footer-email-input" placeholder="Add email for early access" required>
+                        <div class="footer-email-display">
+                            <span class="footer-email-local"></span><span class="footer-email-domain"></span>
+                        </div>
+                    </div>
                     <button type="submit" class="footer-submit-btn">GET ACCESS</button>
                 </form>
             </div>
-            <div class="footer-bar-right">
-                <div class="footer-timestamp">
-                    <span class="footer-log-prefix">STAR.ATLAS LOG</span>
-                    <span class="footer-timestamp-date" id="footer-timestamp-date">00/00/0000</span>
-                    <span class="footer-timestamp-time" id="footer-timestamp-time">00:00:00</span>
-                </div>
+            <div class="footer-timestamp">
+                <span class="footer-log-prefix">STAR.ATLAS LOG</span>
+                <span class="footer-timestamp-date" id="footer-timestamp-date">00/00/0000</span>
+                <span class="footer-timestamp-time" id="footer-timestamp-time">00:00:00</span>
             </div>
             <button class="footer-bar-close" onclick="closeFooterBar()">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1123,6 +1126,38 @@
 
             window.addEventListener('scroll', handleScroll);
             handleScroll(); // Check initial state
+
+            // Footer email input with @ coloring
+            const footerEmailInput = footerBar.querySelector('.footer-email-input');
+            const footerEmailDisplay = footerBar.querySelector('.footer-email-display');
+            const footerEmailLocal = footerEmailDisplay.querySelector('.footer-email-local');
+            const footerEmailDomain = footerEmailDisplay.querySelector('.footer-email-domain');
+
+            footerEmailInput.addEventListener('input', function(e) {
+                const value = e.target.value;
+                if (value.includes('@')) {
+                    const [local, domain] = value.split('@');
+                    footerEmailLocal.textContent = local;
+                    footerEmailDomain.textContent = '@' + (domain || '');
+                    footerEmailDisplay.style.opacity = '1';
+                } else {
+                    footerEmailLocal.textContent = value;
+                    footerEmailDomain.textContent = '';
+                    footerEmailDisplay.style.opacity = value ? '1' : '0';
+                }
+            });
+
+            footerEmailInput.addEventListener('focus', function() {
+                if (this.value) {
+                    footerEmailDisplay.style.opacity = '1';
+                }
+            });
+
+            footerEmailInput.addEventListener('blur', function() {
+                if (!this.value) {
+                    footerEmailDisplay.style.opacity = '0';
+                }
+            });
         }
 
         // Submit footer email form
@@ -1184,6 +1219,52 @@
         // Initialize sticky footer bar
         document.addEventListener('DOMContentLoaded', function() {
             initStickyFooterBar();
+            
+            // Debug: Press Ctrl+Shift+R to reset footer bar for testing
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.shiftKey && e.key === 'R') {
+                    e.preventDefault();
+                    localStorage.removeItem('earlyAccessSubmitted');
+                    hasSubmittedEmail = false;
+                    const footerBar = document.getElementById('stickyFooterBar');
+                    if (footerBar) {
+                        footerBar.classList.remove('hidden');
+                        // Trigger scroll check to show if needed
+                        const heroSection = document.querySelector('.hero');
+                        if (heroSection && heroSection.getBoundingClientRect().bottom <= 0) {
+                            footerBar.classList.add('visible');
+                            document.body.classList.add('footer-bar-visible');
+                            isFooterBarVisible = true;
+                        }
+                    }
+                    console.log('Footer bar reset for testing');
+                    
+                    // Show a temporary notification
+                    const notification = document.createElement('div');
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: #32feff;
+                        color: #000;
+                        padding: 1rem 2rem;
+                        font-family: 'Orbitron', monospace;
+                        font-size: 0.875rem;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 0.1em;
+                        z-index: 10000;
+                        animation: slideIn 0.3s ease;
+                    `;
+                    notification.textContent = 'Footer Bar Reset';
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.style.animation = 'slideOut 0.3s ease';
+                        setTimeout(() => notification.remove(), 300);
+                    }, 2000);
+                }
+            });
         });
 
         // Mouse spotlight effect
