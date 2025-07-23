@@ -19,6 +19,9 @@
         <div class="grid-layer accent"></div>
     </div>
     
+    <!-- Mouse spotlight effect -->
+    <div class="mouse-spotlight"></div>
+    
     <!-- Glow Effects -->
     <div class="glow-container">
         <div class="glow"></div>
@@ -50,7 +53,7 @@
                     <li><a href="https://staratlas.com/contact" target="_blank">Contact</a></li>
                 </ul>
                 <div class="nav-cta">
-                    <a href="https://play.staratlas.com/market/" target="_blank" class="download-btn">Galactic Marketplace</a>
+                    <a href="https://play.staratlas.com/market/" target="_blank" class="download-btn"><span>Galactic Marketplace</span></a>
                 </div>
             </div>
         </div>
@@ -131,9 +134,14 @@
     <section class="game-section" id="game">
         <div class="section-corners"></div>
         <div class="section-header">
-            <span class="section-number">0001.</span>
-            <h2 class="section-title">GAME</h2>
-            <div class="section-line"></div>
+            <div style="display: flex; align-items: stretch;">
+                <span class="section-number">0001.</span>
+                <h2 class="section-title">GAME</h2>
+            </div>
+            <div class="section-icon-wrapper">
+                <img src="Icon.svg" alt="" class="section-icon" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                <span class="section-tooltip">TO THE TOP</span>
+            </div>
         </div>
         <p class="section-subtitle">Immerse yourself in the vastness of Galia, where Star Atlas comes alive.</p>
         
@@ -144,7 +152,7 @@
 
         <!-- 3rd Person Content -->
         <div id="3rdperson" class="game-content active">
-            <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 0 auto 3rem;">
+            <p style="text-align: center; color: rgba(255, 255, 255, 1); max-width: 800px; margin: 0 auto 3rem;">
                 Join the fight for resources and territory with intense ship-to-ship and FPS combat, exploration, 
                 crafting, and quests.
             </p>
@@ -155,7 +163,7 @@
                     <div class="carousel-track" id="carousel-3rd">
                         <!-- Slide 1: Galia -->
                         <div class="carousel-slide active">
-                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_1_ImageThumbnail.png" autoplay muted loop>
+                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_1_ImageThumbnail.png" autoplay muted>
                                 <source src="src/GAME section/3rd Person Experience/Slide_1_Galia.mp4" type="video/mp4">
                             </video>
                             <div class="slide-caption">
@@ -167,7 +175,7 @@
                         
                         <!-- Slide 2: Game Modes -->
                         <div class="carousel-slide">
-                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_2_ImageThumbnail.png" muted loop>
+                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_2_ImageThumbnail.png" muted>
                                 <source src="src/GAME section/3rd Person Experience/Slide_2_GameModes.mp4" type="video/mp4">
                             </video>
                             <div class="slide-caption">
@@ -179,7 +187,7 @@
                         
                         <!-- Slide 3: Your Fleet Your Way -->
                         <div class="carousel-slide">
-                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_3_ImageThumbnail.png" muted loop>
+                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_3_ImageThumbnail.png" muted>
                                 <source src="src/GAME section/3rd Person Experience/Slide_3_YourFleetYourWay.mp4" type="video/mp4">
                             </video>
                             <div class="slide-caption">
@@ -191,7 +199,7 @@
                         
                         <!-- Slide 4: Life in Galia -->
                         <div class="carousel-slide">
-                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_4_ImageThumbnail.png" muted loop>
+                            <video class="carousel-video" poster="src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_4_ImageThumbnail.png" muted>
                                 <source src="src/GAME section/3rd Person Experience/Slide_4_LifeinGalia.mp4" type="video/mp4">
                             </video>
                             <div class="slide-caption">
@@ -235,7 +243,7 @@
 
         <!-- RTS Content -->
         <div id="rts" class="game-content">
-            <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 0 auto 3rem;">
+            <p style="text-align: center; color: rgba(255, 255, 255, 1); max-width: 800px; margin: 0 auto 3rem;">
                 Command vast fleets from a strategic overhead view. Manage resources, territories, and 
                 shape the political landscape of the galaxy.
             </p>
@@ -246,7 +254,7 @@
                     <div class="carousel-track" id="carousel-rts">
                         <!-- Slide 1: Fleet Command -->
                         <div class="carousel-slide active">
-                            <video class="carousel-video" poster="src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png" autoplay muted loop>
+                            <video class="carousel-video" poster="src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png" autoplay muted>
                                 <source src="src/GAME section/Top-down RTS View/TDS_Slide_1_FleetCommand.mp4" type="video/mp4">
                             </video>
                             <div class="slide-caption">
@@ -258,7 +266,7 @@
                         
                         <!-- Slide 2: Holosim -->
                         <div class="carousel-slide">
-                            <video class="carousel-video" poster="src/GAME section/Top-down RTS View/Thumbnail Images/Slide_1_Holosim_Thumbnail.png" muted loop>
+                            <video class="carousel-video" poster="src/GAME section/Top-down RTS View/Thumbnail Images/Slide_1_Holosim_Thumbnail.png" muted>
                                 <source src="src/GAME section/Top-down RTS View/Slide_2_Holosim.mp4" type="video/mp4">
                             </video>
                             <div class="slide-caption">
@@ -270,7 +278,7 @@
                         
                         <!-- Slide 3: SAGE Labs -->
                         <div class="carousel-slide">
-                            <video class="carousel-video" poster="src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png" muted loop>
+                            <video class="carousel-video" poster="src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png" muted>
                                 <source src="src/GAME section/Top-down RTS View/TDS_Slide_1_FleetCommand.mp4" type="video/mp4">
                             </video>
                             <div class="slide-caption">
@@ -312,9 +320,14 @@
     <!-- Economy Section -->
     <section class="economy-section" id="economy">
         <div class="section-header">
-            <span class="section-number">0002.</span>
-            <h2 class="section-title">Economy</h2>
-            <div class="section-line"></div>
+            <div style="display: flex; align-items: stretch;">
+                <span class="section-number">0002.</span>
+                <h2 class="section-title">Economy</h2>
+            </div>
+            <div class="section-icon-wrapper">
+                <img src="Icon.svg" alt="" class="section-icon" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                <span class="section-tooltip">TO THE MOON</span>
+            </div>
         </div>
         <p class="section-subtitle">Join a real cash economy with real opportunities.</p>
         
@@ -344,9 +357,14 @@
     <!-- Community Section -->
     <section class="community-section" id="community">
         <div class="section-header">
-            <span class="section-number">0003.</span>
-            <h2 class="section-title">Community</h2>
-            <div class="section-line"></div>
+            <div style="display: flex; align-items: stretch;">
+                <span class="section-number">0003.</span>
+                <h2 class="section-title">Community</h2>
+            </div>
+            <div class="section-icon-wrapper">
+                <img src="Icon.svg" alt="" class="section-icon" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                <span class="section-tooltip">TO THE TOP</span>
+            </div>
         </div>
         <p class="community-description">
             Join a community of pioneers, ready to answer all of your questions.
@@ -412,11 +430,33 @@
     <!-- Scan Line Effect -->
     <div class="scan-line"></div>
 
-    <!-- Timestamp Widget -->
-<div class="timestamp gated-content" style="display: none;">
-    <div class="timestamp-time" id="timestamp-time">00:00:00</div>
-    <div class="timestamp-date" id="timestamp-date">Jan 01, 2625</div>
-</div>
+    <!-- Sticky Footer Bar -->
+    <div class="sticky-footer-bar" id="stickyFooterBar">
+        <div class="footer-bar-container">
+            <div class="footer-bar-icon-box">
+                <img src="Icon.svg" alt="Star Atlas" class="footer-bar-icon">
+            </div>
+            <div class="footer-bar-title">EARLY ACCESS</div>
+            <div class="footer-bar-left">
+                <form class="footer-email-form" onsubmit="submitFooterEmail(event)">
+                    <input type="email" class="footer-email-input" placeholder="Join the early access list" required>
+                    <button type="submit" class="footer-submit-btn">GET ACCESS</button>
+                </form>
+            </div>
+            <div class="footer-bar-right">
+                <div class="footer-timestamp">
+                    <span class="footer-log-prefix">STAR.ATLAS LOG</span>
+                    <span class="footer-timestamp-date" id="footer-timestamp-date">00/00/0000</span>
+                    <span class="footer-timestamp-time" id="footer-timestamp-time">00:00:00</span>
+                </div>
+            </div>
+            <button class="footer-bar-close" onclick="closeFooterBar()">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
 
     <script>
         // Toggle game content
@@ -520,9 +560,14 @@
         // Auto-play functionality
         function startAutoPlay(carouselId) {
             const carousel = carousels[carouselId];
+            // Clear any existing interval
+            if (carousel.interval) {
+                clearInterval(carousel.interval);
+            }
+            // Set a backup timer in case video doesn't end (e.g., loading issues)
             carousel.interval = setInterval(() => {
                 changeSlide(carouselId, 1);
-            }, 5000); // Change slide every 5 seconds
+            }, 30000); // Fallback: change slide every 30 seconds
         }
 
         function stopAutoPlay(carouselId) {
@@ -533,8 +578,25 @@
             }
         }
 
+        // Setup video end listeners
+        function setupVideoEndListeners(carouselId) {
+            const track = document.getElementById(`carousel-${carouselId}`);
+            const videos = track.querySelectorAll('video');
+            
+            videos.forEach((video, index) => {
+                video.addEventListener('ended', () => {
+                    // Move to next slide when video ends
+                    changeSlide(carouselId, 1);
+                });
+            });
+        }
+
         // Initialize carousels when content becomes active
         document.addEventListener('DOMContentLoaded', function() {
+            // Setup video end listeners for both carousels
+            setupVideoEndListeners('3rd');
+            setupVideoEndListeners('rts');
+            
             // Start auto-play for the initially active carousel
             const activeContent = document.querySelector('.game-content.active');
             if (activeContent && activeContent.id === '3rd-person') {
@@ -557,9 +619,6 @@
                 day: '2-digit' 
             });
             
-            document.getElementById('timestamp-time').textContent = time;
-            document.getElementById('timestamp-date').textContent = date;
-            
             // Update Star Atlas Log timestamp
             const starAtlasLog = document.getElementById('starAtlasLog');
             if (starAtlasLog) {
@@ -579,6 +638,23 @@
                     const seconds = String(futureDate.getSeconds()).padStart(2, '0');
                     logTime.textContent = `${hours}:${minutes}:${seconds}`;
                 }
+            }
+            
+            // Update footer bar timestamp
+            const footerTimeEl = document.getElementById('footer-timestamp-time');
+            const footerDateEl = document.getElementById('footer-timestamp-date');
+            if (footerTimeEl && footerDateEl) {
+                // Format date as YYYY.MM.DD
+                const year = futureDate.getFullYear();
+                const month = String(futureDate.getMonth() + 1).padStart(2, '0');
+                const day = String(futureDate.getDate()).padStart(2, '0');
+                footerDateEl.textContent = `${year}.${month}.${day}`;
+                
+                // Format time as HH:MM:SS
+                const hours = String(futureDate.getHours()).padStart(2, '0');
+                const minutes = String(futureDate.getMinutes()).padStart(2, '0');
+                const seconds = String(futureDate.getSeconds()).padStart(2, '0');
+                footerTimeEl.textContent = `${hours}:${minutes}:${seconds}`;
             }
         }
         setInterval(updateTimestamp, 1000);
@@ -1010,6 +1086,153 @@
             if (localStorage.getItem('contentUnlocked') === 'true') {
                 unlockContent();
             }
+        });
+
+        // Sticky Footer Bar functionality
+        let footerBar = null;
+        let heroSection = null;
+        let isFooterBarVisible = false;
+        let hasSubmittedEmail = false;
+
+        function initStickyFooterBar() {
+            footerBar = document.getElementById('stickyFooterBar');
+            heroSection = document.querySelector('.hero');
+            
+            // Check if email already submitted (from localStorage)
+            hasSubmittedEmail = localStorage.getItem('earlyAccessSubmitted') === 'true';
+            
+            if (!footerBar || !heroSection) return;
+
+            function handleScroll() {
+                const heroBottom = heroSection.getBoundingClientRect().bottom;
+                
+                // Don't show if email has been submitted
+                if (hasSubmittedEmail) return;
+                
+                // Show footer bar when scrolled past hero
+                if (heroBottom <= 0 && !isFooterBarVisible) {
+                    isFooterBarVisible = true;
+                    footerBar.classList.add('visible');
+                    document.body.classList.add('footer-bar-visible');
+                } else if (heroBottom > 0 && isFooterBarVisible) {
+                    isFooterBarVisible = false;
+                    footerBar.classList.remove('visible');
+                    document.body.classList.remove('footer-bar-visible');
+                }
+            }
+
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Check initial state
+        }
+
+        // Submit footer email form
+        async function submitFooterEmail(e) {
+            e.preventDefault();
+            const form = e.target;
+            const emailInput = form.querySelector('.footer-email-input');
+            const submitBtn = form.querySelector('.footer-submit-btn');
+            const email = emailInput.value;
+
+            // Disable form during submission
+            emailInput.disabled = true;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                // Simulate API call (replace with actual API endpoint)
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Mark as submitted
+                localStorage.setItem('earlyAccessSubmitted', 'true');
+                hasSubmittedEmail = true;
+                
+                // Hide footer bar
+                isFooterBarVisible = false;
+                footerBar.classList.remove('visible');
+                document.body.classList.remove('footer-bar-visible');
+                
+                // Show success message
+                submitBtn.textContent = 'Success!';
+                submitBtn.style.background = '#10b981';
+                
+                // Also submit the main form if it exists
+                const mainEmailInput = document.getElementById('heroEmailInput');
+                if (mainEmailInput) {
+                    mainEmailInput.value = email;
+                    const mainForm = mainEmailInput.closest('form');
+                    if (mainForm) {
+                        mainForm.dispatchEvent(new Event('submit'));
+                    }
+                }
+                
+            } catch (error) {
+                // Re-enable form on error
+                emailInput.disabled = false;
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+                alert('An error occurred. Please try again.');
+            }
+        }
+
+        // Close footer bar function
+        function closeFooterBar() {
+            isFooterBarVisible = false;
+            footerBar.classList.remove('visible');
+            document.body.classList.remove('footer-bar-visible');
+        }
+
+        // Initialize sticky footer bar
+        document.addEventListener('DOMContentLoaded', function() {
+            initStickyFooterBar();
+        });
+
+        // Mouse spotlight effect
+        const mouseSpotlight = document.querySelector('.mouse-spotlight');
+        let spotlightX = 0;
+        let spotlightY = 0;
+        let spotlightCurrentX = 0;
+        let spotlightCurrentY = 0;
+        let isSpotlightMoving = false;
+        let spotlightFadeTimeout;
+
+        document.addEventListener('mousemove', (e) => {
+            spotlightX = e.clientX;
+            spotlightY = e.clientY;
+            
+            // Show spotlight when mouse moves
+            if (!isSpotlightMoving) {
+                isSpotlightMoving = true;
+                mouseSpotlight.style.opacity = '1';
+            }
+            
+            // Clear existing timeout
+            clearTimeout(spotlightFadeTimeout);
+            
+            // Hide spotlight after mouse stops
+            spotlightFadeTimeout = setTimeout(() => {
+                mouseSpotlight.style.opacity = '0';
+                isSpotlightMoving = false;
+            }, 1000);
+        });
+
+        // Smooth animation loop
+        function animateSpotlight() {
+            // Smooth interpolation
+            spotlightCurrentX += (spotlightX - spotlightCurrentX) * 0.1;
+            spotlightCurrentY += (spotlightY - spotlightCurrentY) * 0.1;
+            
+            mouseSpotlight.style.left = spotlightCurrentX + 'px';
+            mouseSpotlight.style.top = spotlightCurrentY + 'px';
+            
+            requestAnimationFrame(animateSpotlight);
+        }
+        
+        animateSpotlight();
+
+        // Hide spotlight when mouse leaves window
+        document.addEventListener('mouseleave', () => {
+            mouseSpotlight.style.opacity = '0';
+            isSpotlightMoving = false;
         });
 
         // Legacy Modal Functions (keeping for compatibility)
