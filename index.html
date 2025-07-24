@@ -1081,12 +1081,44 @@
             localStorage.setItem('contentUnlocked', 'true');
         }
         
+        // Track terminal box state
+        let terminalBoxClicks = 0;
+        
         // Bypass email gate function
         function bypassEmailGate(e) {
             e.preventDefault();
             
-            // The terminal box stays visible, X button acts as bypass
-            unlockContent();
+            const terminalBox = document.querySelector('.terminal-box');
+            const heroContent = document.getElementById('heroContent');
+            
+            terminalBoxClicks++;
+            
+            if (terminalBoxClicks === 1) {
+                // First click: move to left and unlock content
+                if (heroContent) {
+                    heroContent.classList.remove('center-bottom');
+                    heroContent.classList.add('bottom-left');
+                }
+                unlockContent();
+            } else if (terminalBoxClicks >= 2) {
+                // Second click: hide terminal box and rearrange content
+                if (terminalBox) {
+                    terminalBox.style.display = 'none';
+                    
+                    // Add class to hero content to adjust positioning
+                    if (heroContent) {
+                        heroContent.classList.add('terminal-hidden');
+                        
+                        // Move logo above tagline
+                        const heroLogo = heroContent.querySelector('.hero-logo');
+                        const heroTagline = heroContent.querySelector('.hero-tagline');
+                        
+                        if (heroLogo && heroTagline && heroTagline.parentNode) {
+                            heroTagline.parentNode.insertBefore(heroLogo, heroTagline);
+                        }
+                    }
+                }
+            }
         }
         
         // Check if content was previously unlocked
@@ -1109,6 +1141,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('contentUnlocked') === 'true') {
                 unlockContent();
+                // Set click counter to 1 since content is already unlocked and box is on the left
+                terminalBoxClicks = 1;
             }
         });
 
