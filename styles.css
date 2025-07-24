@@ -3580,12 +3580,38 @@ body.footer-bar-visible footer {
     margin: 0;
 }
 
+/* When terminal box is hidden */
+.hero-content.terminal-hidden {
+    padding-bottom: 12rem !important;
+}
+
+.hero-content.terminal-hidden .hero-tagline {
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+}
+
+.hero-content.terminal-hidden .hero-logo {
+    margin-bottom: 0.5rem;
+    max-width: 300px;
+    display: block;
+}
+
+/* Ensure proper left alignment when terminal is hidden */
+.hero-content.bottom-left.terminal-hidden .hero-logo {
+    margin-left: 0;
+    margin-right: auto;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .hero-content.center-bottom,
     .hero-content.bottom-left {
         padding: 0 2rem 4rem 2rem;
         max-width: 100%;
+    }
+    
+    .hero-content.terminal-hidden {
+        padding-bottom: 8rem !important;
     }
 } 
 
