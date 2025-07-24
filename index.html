@@ -1030,10 +1030,17 @@
                 form.style.display = 'none';
                 if (bypassLink) bypassLink.style.display = 'none';
                 
-                // Unlock content after delay
+                // Display success toaster for 10 seconds
+                // After 10 seconds, hide the toaster and simulate X button click
                 setTimeout(() => {
-                    unlockContent();
-                }, 2000);
+                    messageDiv.style.display = 'none';
+                    
+                    // Then simulate clicking the X button to close the terminal box
+                    const closeButton = document.querySelector('.terminal-close');
+                    if (closeButton) {
+                        closeButton.click();
+                    }
+                }, 10000); // 10 seconds
                 
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'GET EARLY ACCESS NOW';
@@ -1062,10 +1069,19 @@
                     form.style.display = 'none';
                     if (bypassLink) bypassLink.style.display = 'none';
                     
-                    // Unlock content after successful email submission
+                    // Display success toaster for 10 seconds
+                    messageDiv.style.display = 'block';
+                    
+                    // After 10 seconds, hide the toaster
                     setTimeout(() => {
-                        unlockContent();
-                    }, 2000); // Give user time to see success message
+                        messageDiv.style.display = 'none';
+                        
+                        // Then simulate clicking the X button to close the terminal box
+                        const closeButton = document.querySelector('.terminal-close');
+                        if (closeButton) {
+                            closeButton.click();
+                        }
+                    }, 10000); // 10 seconds
                 } else {
                     messageDiv.textContent = data.message || 'An error occurred. Please try again.';
                     messageDiv.className = 'hero-message error';
@@ -1589,6 +1605,44 @@
                 
                 // Also update on resize
                 window.addEventListener('resize', updateCharacterPositions);
+            }
+        });
+
+        // Ensure hero video autoplay on mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroVideo = document.querySelector('.video-background');
+            
+            if (heroVideo) {
+                // Force video to play on mobile devices
+                const playVideo = () => {
+                    heroVideo.play().catch(e => {
+                        console.log('Video autoplay prevented:', e);
+                        // Try playing on user interaction if autoplay fails
+                        document.addEventListener('touchstart', () => {
+                            heroVideo.play().catch(() => {});
+                        }, { once: true });
+                    });
+                };
+                
+                // Play video when it's ready
+                if (heroVideo.readyState >= 3) {
+                    playVideo();
+                } else {
+                    heroVideo.addEventListener('loadeddata', playVideo, { once: true });
+                }
+                
+                // Ensure video keeps looping
+                heroVideo.addEventListener('ended', () => {
+                    heroVideo.currentTime = 0;
+                    heroVideo.play().catch(() => {});
+                });
+                
+                // Handle visibility changes (when user switches tabs)
+                document.addEventListener('visibilitychange', () => {
+                    if (!document.hidden && heroVideo.paused) {
+                        heroVideo.play().catch(() => {});
+                    }
+                });
             }
         });
     </script>
