@@ -366,18 +366,39 @@
                 <span class="section-tooltip">TO THE TOP</span>
             </div>
         </div>
-        <p class="community-description">
-            Join a community of pioneers, ready to answer all of your questions.
-        </p>
-        <div class="community-links">
-            <a href="#discord" class="community-btn discord-btn">
-                <span>💬</span>
-                Discord
-            </a>
-        </div>
-        <!-- Community Image -->
-        <div class="community-image-container" style="margin-top: 3rem; text-align: center;">
-            <img src="src/Community_Website_july22.png" alt="Star Atlas Community" class="community-image" style="max-width: 100%; height: auto; border-radius: 10px;">
+        
+        <div class="community-hero">
+            <div class="community-content-wrapper">
+                
+                <div class="community-visual-content">
+                    <div class="community-characters">
+                        <img src="src/community/left-char.png" alt="Character" class="community-char char-left">
+                        <img src="src/community/mid-char.png" alt="Character" class="community-char char-mid">
+                        <img src="src/community/right-char.png" alt="Character" class="community-char char-right">
+                    </div>
+                    
+                    <a href="https://discord.gg/staratlas" target="_blank" class="discord-card-link">
+                        <div class="discord-card">
+                            <div class="discord-card-content">
+                                <div class="discord-card-image">
+                                    <img src="src/community/discord-bg.jpg" alt="Star Atlas Discord">
+                                    <div class="card-logos">
+                                        <img src="Icon.svg" alt="Star Atlas" class="star-atlas-logo">
+                                        <svg class="discord-logo" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="slide-caption discord-card-text">
+                                    <h4 class="slide-title">STAR ATLAS DISCORD</h4>
+                                    <p class="slide-description">Join a community of pioneers, ready to answer all of your questions.</p>
+                                    <span class="discord-cta">discord.gg/staratlas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -445,7 +466,7 @@
                             <span class="footer-email-local"></span><span class="footer-email-domain"></span>
                         </div>
                     </div>
-                    <button type="submit" class="footer-submit-btn">GET ACCESS</button>
+                    <button type="submit" class="footer-submit-btn">GET ACCESS NOW</button>
                 </form>
             </div>
             <div class="footer-timestamp">
@@ -1096,6 +1117,8 @@
         let heroSection = null;
         let isFooterBarVisible = false;
         let hasSubmittedEmail = false;
+        let hasManuallyClosedFooter = false;
+        let hasReturnedToTop = false;
 
         function initStickyFooterBar() {
             footerBar = document.getElementById('stickyFooterBar');
@@ -1111,6 +1134,20 @@
                 
                 // Don't show if email has been submitted
                 if (hasSubmittedEmail) return;
+                
+                // Check if user has returned to top after manually closing
+                if (hasManuallyClosedFooter && heroBottom > window.innerHeight * 0.5) {
+                    hasReturnedToTop = true;
+                }
+                
+                // Reset manual close flag if user has returned to top and scrolled down again
+                if (hasManuallyClosedFooter && hasReturnedToTop && heroBottom <= 0) {
+                    hasManuallyClosedFooter = false;
+                    hasReturnedToTop = false;
+                }
+                
+                // Don't show if manually closed and haven't returned to top
+                if (hasManuallyClosedFooter) return;
                 
                 // Show footer bar when scrolled past hero
                 if (heroBottom <= 0 && !isFooterBarVisible) {
@@ -1212,6 +1249,8 @@
         // Close footer bar function
         function closeFooterBar() {
             isFooterBarVisible = false;
+            hasManuallyClosedFooter = true;
+            hasReturnedToTop = false;
             footerBar.classList.remove('visible');
             document.body.classList.remove('footer-bar-visible');
         }
@@ -1226,6 +1265,8 @@
                     e.preventDefault();
                     localStorage.removeItem('earlyAccessSubmitted');
                     hasSubmittedEmail = false;
+                    hasManuallyClosedFooter = false;
+                    hasReturnedToTop = false;
                     const footerBar = document.getElementById('stickyFooterBar');
                     if (footerBar) {
                         footerBar.classList.remove('hidden');
@@ -1363,7 +1404,7 @@
                 errorMsg.style.display = 'block';
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Get Access';
+                submitBtn.textContent = 'Get Access Now';
             }
         }
 
@@ -1383,6 +1424,102 @@
                 closeEarlyAccessModal();
             }
         }
+
+        // Community section character parallax animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const communitySection = document.querySelector('.community-section');
+            const communityChars = document.querySelectorAll('.community-char');
+            
+            if (communitySection && communityChars.length > 0) {
+                // Remove the initial animation and set initial state
+                communityChars.forEach(char => {
+                    // Add a small transition to smooth out any jumps
+                    char.style.transition = 'transform 0.1s ease-out';
+                    char.style.opacity = '1';
+                    
+                    // Set different starting positions for each character
+                    if (char.classList.contains('char-mid')) {
+                        char.style.transform = 'translateY(150px)';
+                    } else if (char.classList.contains('char-left')) {
+                        char.style.transform = 'translateY(120px)';
+                    } else if (char.classList.contains('char-right')) {
+                        char.style.transform = 'translateY(60px)'; // 90px - 30px offset
+                    }
+                });
+                
+                function updateCharacterPositions() {
+                    const sectionRect = communitySection.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    
+                    // Get section dimensions
+                    const sectionTop = sectionRect.top;
+                    const sectionBottom = sectionRect.bottom;
+                    const sectionHeight = sectionRect.height;
+                    
+                    // Start much earlier - when section bottom is 600px below viewport
+                    const startPoint = windowHeight + 600;
+                    // Complete when section bottom is 200px into the viewport
+                    const endPoint = windowHeight - 200;
+                    
+                    // Calculate progress based on section bottom position
+                    let progress = 1 - ((sectionBottom - endPoint) / (startPoint - endPoint));
+                    progress = Math.max(0, Math.min(1, progress));
+                    
+                    // Apply a very smooth easing curve (ease-in-out cubic)
+                    const easedProgress = progress < 0.5
+                        ? 4 * progress * progress * progress
+                        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+                    
+                    // Update character positions with different rates
+                    communityChars.forEach((char, index) => {
+                        let translateDistance;
+                        let speedMultiplier;
+                        let finalOffset = 0;
+                        
+                        // Different rates and final positions for each character
+                        if (char.classList.contains('char-mid')) {
+                            // Middle character - fastest (moves the full 150px)
+                            speedMultiplier = 1.0;
+                            translateDistance = 150;
+                            finalOffset = 0; // Ends at base position
+                        } else if (char.classList.contains('char-left')) {
+                            // Left character - second fastest (moves 120px)
+                            speedMultiplier = 0.8;
+                            translateDistance = 120;
+                            finalOffset = 0; // Ends at base position
+                        } else if (char.classList.contains('char-right')) {
+                            // Right character - slowest (moves 90px but ends higher)
+                            speedMultiplier = 0.6;
+                            translateDistance = 90;
+                            finalOffset = -30; // Ends 30px higher to compensate
+                        }
+                        
+                        // Apply different speed to progress
+                        const adjustedProgress = Math.max(0, Math.min(1, easedProgress * speedMultiplier));
+                        const translateY = translateDistance * (1 - adjustedProgress) + finalOffset;
+                        
+                        char.style.transform = `translateY(${translateY}px)`;
+                    });
+                }
+                
+                // Initial position update
+                updateCharacterPositions();
+                
+                // Update on scroll with throttling
+                let scrollTimeout;
+                window.addEventListener('scroll', () => {
+                    if (!scrollTimeout) {
+                        scrollTimeout = requestAnimationFrame(() => {
+                            updateCharacterPositions();
+                            scrollTimeout = null;
+                        });
+                    }
+                });
+                
+                // Also update on resize
+                window.addEventListener('resize', updateCharacterPositions);
+            }
+        });
     </script>
 
     <!-- Early Access Modal -->
@@ -1407,7 +1544,7 @@
                         By entering your email, you'll get your early-access key and occasional updates from Star Atlas. You can unsubscribe anytime.
                     </p>
                     
-                    <button type="submit" id="submitEarlyAccess" class="modal-submit">Get Access</button>
+                    <button type="submit" id="submitEarlyAccess" class="modal-submit">Get Access Now</button>
                 </form>
                 
                 <div id="errorMessage" class="error-message" style="display: none;"></div>
