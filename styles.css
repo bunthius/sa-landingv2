@@ -3724,3 +3724,478 @@ body.footer-bar-visible footer {
         width: 100%;
     }
 }
+
+/* ============================================== */
+/* MOBILE RESPONSIVE IMPROVEMENTS - December 2024 */
+/* ============================================== */
+
+/* 1. Stack toggle tabs on mobile */
+@media (max-width: 768px) {
+    .toggle-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto 3rem;
+    }
+    
+    .toggle-container::before {
+        display: none; /* Hide the horizontal line */
+    }
+    
+    .toggle-btn {
+        width: 100%;
+        min-width: unset;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0;
+    }
+    
+    .toggle-btn:first-child {
+        border-bottom: none;
+    }
+    
+    .toggle-btn:first-child.active {
+        border-bottom: 1px solid #32feff;
+    }
+    
+    .toggle-btn.active::after {
+        display: none; /* Remove bottom indicator on mobile */
+    }
+    
+    /* Add left border indicator for active state on mobile */
+    .toggle-btn.active::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #32feff;
+    }
+}
+
+/* 2. Make sections properly full width on mobile */
+@media (max-width: 768px) {
+    /* Remove section margins and make full width */
+    .game-section,
+    .economy-section,
+    .news-section {
+        margin: 0;
+        padding: 40px 1rem;
+        border-left: none;
+        border-right: none;
+        max-width: 100%;
+        width: 100%;
+        border: none;
+        overflow-x: visible; /* Allow carousel to extend beyond padding */
+    }
+    
+    /* Hide glowing bar above economy section */
+    .economy-section::before {
+        display: none;
+    }
+    
+    /* Adjust section headers for mobile */
+    .section-header {
+        margin: -40px -1rem 2rem -1rem;
+        height: 50px;
+    }
+    
+    .section-number {
+        width: 80px;
+        padding: 0 1rem;
+        font-size: 0.75rem;
+    }
+    
+    .section-title {
+        font-size: 0.75rem;
+        padding: 0 1rem;
+    }
+    
+    /* Full width containers */
+    .carousel-container,
+    .video-carousel {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        width: calc(100% + 2rem);
+        margin-top: 0;
+        margin-bottom: 0;
+        max-width: none; /* Override any max-width constraints */
+    }
+    
+    /* Remove carousel border on mobile */
+    .carousel-container {
+        border: none;
+        overflow: visible; /* Allow content to extend beyond padding */
+    }
+    
+    /* Ensure carousel slides take full width */
+    .carousel-slide,
+    .carousel-video {
+        width: 100%;
+        max-width: none;
+    }
+    
+    /* Adjust stats grid */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    
+    .stat-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    /* Section subtitles */
+    .section-subtitle {
+        padding: 0 1rem;
+        font-size: 0.875rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* 3. Fix footer email bar for mobile */
+@media (max-width: 768px) {
+    .sticky-footer-bar {
+        height: auto;
+        min-height: 120px;
+        padding: 1rem;
+    }
+    
+    .footer-bar-container {
+        flex-direction: column;
+        height: auto;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    /* Hide icon box and title on mobile */
+    .footer-bar-icon-box,
+    .footer-bar-title {
+        display: none;
+    }
+    
+    /* Full width center section */
+    .footer-bar-center {
+        max-width: 100%;
+        padding: 0;
+        width: 100%;
+    }
+    
+    /* Stack email form vertically */
+    .footer-email-form {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+    }
+    
+    .footer-email-wrapper {
+        width: 100%;
+    }
+    
+    .footer-email-input {
+        width: 100%;
+        padding: 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .footer-submit-btn {
+        width: 100%;
+        padding: 1rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Hide close button on mobile */
+    .footer-bar-close {
+        display: none;
+    }
+    
+    /* Adjust footer spacing when bar is visible */
+    body.footer-bar-visible footer {
+        padding-bottom: 170px; /* Increased from 140px for more clearance */
+    }
+}
+
+/* 4. Community section mobile - show only Discord card */
+@media (max-width: 768px) {
+    .community-section {
+        padding: 40px 0 0;
+        margin: 0;
+    }
+    
+    /* Hide the background image and characters on mobile */
+    .community-hero {
+        background: none;
+        height: auto;
+        margin-top: 0;
+        padding: 2rem 1rem;
+    }
+    
+    .community-characters {
+        display: none;
+    }
+    
+    /* Keep section header hidden on all devices */
+    .community-section .section-header {
+        display: none !important;
+    }
+    
+    /* Center and make Discord card full width */
+    .community-visual-content {
+        position: static;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .discord-card-link {
+        margin: 0;
+        width: 100%;
+        max-width: 400px;
+        display: block;
+    }
+    
+    .discord-card {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Adjust Discord card image height for mobile */
+    .discord-card-image {
+        height: 250px;
+    }
+    
+    /* Ensure logos are visible */
+    .card-logos {
+        gap: 0.75rem;
+    }
+    
+    .discord-card-image .card-logos .star-atlas-logo {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    .discord-logo {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+/* 5. Reduce hover effects and remove mouse spotlight on mobile */
+@media (max-width: 768px) {
+    /* Hide mouse spotlight */
+    .mouse-spotlight {
+        display: none;
+    }
+    
+    /* Style videos for mobile - show poster by default */
+    .carousel-video {
+        /* Videos will show poster until played */
+        cursor: pointer;
+        position: relative;
+    }
+    
+    /* Add play button overlay on mobile */
+    .carousel-slide::after {
+        content: '▶';
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 18px;
+        pointer-events: none;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+        /* Better centering with adjusted positioning */
+        padding: 0;
+        padding-left: 5px; /* Fine-tune visual center for play triangle */
+        padding-bottom: 2px;
+        box-sizing: border-box;
+    }
+    
+    /* Hide play button when video is playing */
+    .carousel-slide.playing::after {
+        display: none;
+    }
+    
+    /* Simplify hover effects */
+    .feature-card:hover,
+    .news-card:hover,
+    .stat-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .toggle-btn:hover:not(.active) {
+        background: transparent;
+    }
+    
+    .download-btn:hover,
+    .secondary-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    /* Disable parallax on mobile */
+    .glow,
+    .grid-layer.dots {
+        animation: none;
+    }
+    
+    /* Reduce text hover effects */
+    .nav-links a:hover,
+    .footer-column a:hover {
+        transform: none;
+    }
+    
+    /* Disable card tilt effects */
+    .feature-card,
+    .news-card,
+    .stat-card {
+        transform-style: flat;
+    }
+}
+
+/* Additional mobile touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    .toggle-btn {
+        padding: 1rem 2rem;
+        min-height: 48px;
+    }
+    
+    .footer-submit-btn,
+    .hero-submit-btn {
+        min-height: 48px;
+    }
+    
+    /* Remove hover-only effects */
+    *:hover {
+        transition: none !important;
+    }
+}
+
+/* Extra small mobile adjustments */
+@media (max-width: 480px) {
+    /* Further reduce padding */
+    .game-section,
+    .economy-section,
+    .news-section {
+        padding: 30px 0.75rem;
+    }
+    
+    /* Smaller section headers */
+    .section-header {
+        height: 45px;
+    }
+    
+    .section-number {
+        width: 70px;
+        font-size: 0.7rem;
+    }
+    
+    .section-title {
+        font-size: 0.7rem;
+    }
+    
+    /* Reduce stat card padding */
+    .stat-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .stat-value {
+        font-size: 2rem;
+    }
+    
+    /* Adjust Discord card */
+    .discord-card-image {
+        height: 200px;
+    }
+    
+    .discord-card-text {
+        padding: 1rem;
+    }
+    
+    /* Smaller carousel videos */
+    .carousel-video {
+        max-height: 300px;
+    }
+}
+
+/* Fix terminal box on mobile when unlocked */
+@media (max-width: 768px) {
+    .hero-content.bottom-left {
+        padding: 0 1rem 3rem 1rem;
+    }
+    
+    .hero-content.bottom-left .terminal-box {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .hero-content.terminal-hidden {
+        padding-bottom: 6rem !important;
+    }
+    
+    .hero-content.terminal-hidden .hero-logo {
+        width: 250px;
+        max-width: 80vw;
+    }
+    
+    /* 1. Center hero tagline and logo on mobile */
+    .hero-content.terminal-hidden {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-content.terminal-hidden .hero-tagline {
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .hero-content.terminal-hidden .hero-logo {
+        margin: 0 auto;
+        display: block;
+    }
+    
+    /* 2. Add space between hero and game section */
+    .hero {
+        margin-bottom: 2rem; /* Reduced to prevent border clipping */
+    }
+    
+    /* Add margin-top to game section to create separation */
+    .game-section {
+        margin-top: 3rem; /* Added to create separation from hero */
+        margin-bottom: 2rem; /* Reduced to prevent border clipping */
+    }
+    
+    /* Add margin-top to economy section */
+    .economy-section {
+        margin-top: 3rem; /* Added to create separation from game section */
+        margin-bottom: 3rem;
+    }
+    
+    /* 4. Fix stray border in economy header on mobile */
+    .economy-section .section-header {
+        border-bottom: none;
+        border-top: none;
+    }
+    
+    /* Adjust footer padding on mobile to accommodate copyright notice */
+    footer {
+        padding-bottom: 5rem; /* Further increased for better copyright visibility */
+    }
+}

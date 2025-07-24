@@ -628,6 +628,43 @@
             } else if (activeContent && activeContent.id === 'rts-view') {
                 startAutoPlay('rts');
             }
+            
+            // Add playsinline attribute to all videos for mobile
+            const allVideos = document.querySelectorAll('video');
+            allVideos.forEach(video => {
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                
+                // Disable autoplay on mobile devices
+                if (window.innerWidth <= 768) {
+                    video.removeAttribute('autoplay');
+                    // Show poster instead
+                    video.load();
+                }
+            });
+            
+            // Handle mobile video play - prevent fullscreen takeover
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.carousel-video').forEach(video => {
+                    video.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const slide = this.closest('.carousel-slide');
+                        if (this.paused) {
+                            this.play();
+                            slide.classList.add('playing');
+                        } else {
+                            this.pause();
+                            slide.classList.remove('playing');
+                        }
+                    });
+                    
+                    // Remove playing class when video ends
+                    video.addEventListener('ended', function() {
+                        const slide = this.closest('.carousel-slide');
+                        slide.classList.remove('playing');
+                    });
+                });
+            }
         });
 
         // Update timestamp every second with correct future date
