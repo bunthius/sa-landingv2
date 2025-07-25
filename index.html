@@ -391,6 +391,7 @@
                             <div class="discord-card-content">
                                 <div class="discord-card-image">
                                     <img src="src/community/discord-bg.jpg" alt="Star Atlas Discord">
+                                    <!-- <pixel-canvas data-gap="20" data-speed="15" data-colors="#5affff" data-variant="icon" data-opacity="1" data-blend="additive" data-size="2"></pixel-canvas> -->
                                     <div class="card-logos">
                                         <img src="Icon.svg" alt="Star Atlas" class="star-atlas-logo">
                                         <svg class="discord-logo" viewBox="0 0 24 24" fill="currentColor">
@@ -1674,7 +1675,7 @@
 
         // Pixel Effect Implementation for Stat Cards
         class Pixel {
-            constructor(canvas, context, x, y, color, speed, delay, distanceRatio) {
+            constructor(canvas, context, x, y, color, speed, delay, distanceRatio, pixelSize = 3) {
                 this.width = canvas.width
                 this.height = canvas.height
                 this.ctx = context
@@ -1688,7 +1689,7 @@
                 
                 // Apply vignetting - smaller max size near edges
                 const vignetteScale = 1 - Math.pow(distanceRatio, 2) * 0.6 // Quadratic falloff
-                this.maxSizeInteger = 3 * vignetteScale  // Scale max size based on distance
+                this.maxSizeInteger = pixelSize * vignetteScale  // Use custom pixel size
                 this.maxSize = this.getRandomValue(this.minSize, Math.max(this.minSize, this.maxSizeInteger))
                 
                 this.delay = delay
@@ -1825,6 +1826,15 @@
                 return isNaN(value) ? 1 : Math.max(0, Math.min(1, value))
             }
 
+            get blend() {
+                return this.dataset.blend || "normal"
+            }
+
+            get pixelSize() {
+                const value = Number(this.dataset.size)
+                return isNaN(value) ? 3 : Math.max(1, Math.min(10, value))
+            }
+
             connectedCallback() {
                 if (this._initialized) return
                 this._initialized = true
@@ -1918,7 +1928,7 @@
                         }
 
                         this.pixels.push(
-                            new Pixel(this.canvas, this.ctx, x, y, color, this.speed, delay, distanceRatio)
+                            new Pixel(this.canvas, this.ctx, x, y, color, this.speed, delay, distanceRatio, this.pixelSize)
                         )
                     }
                 }
@@ -1945,6 +1955,11 @@
                     // Apply global opacity for dimmer effect
                     this.ctx.save()
                     this.ctx.globalAlpha = this.opacity
+                    
+                    // Apply blend mode if specified
+                    if (this.blend === 'additive') {
+                        this.ctx.globalCompositeOperation = 'overlay'
+                    }
 
                     let allIdle = true
                     for (const pixel of this.pixels) {
