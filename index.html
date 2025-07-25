@@ -530,6 +530,10 @@
             slides[carousel.currentSlide].classList.add('active');
             const newVideo = slides[carousel.currentSlide].querySelector('video');
             if (newVideo) {
+                // Ensure video has required attributes for mobile autoplay
+                newVideo.setAttribute('muted', '');
+                newVideo.setAttribute('playsinline', '');
+                newVideo.setAttribute('webkit-playsinline', '');
                 newVideo.play().catch(e => console.log('Video play failed:', e));
             }
             if (thumbnails[carousel.currentSlide]) {
@@ -559,6 +563,10 @@
             slides[carousel.currentSlide].classList.add('active');
             const newVideo = slides[carousel.currentSlide].querySelector('video');
             if (newVideo) {
+                // Ensure video has required attributes for mobile autoplay
+                newVideo.setAttribute('muted', '');
+                newVideo.setAttribute('playsinline', '');
+                newVideo.setAttribute('webkit-playsinline', '');
                 newVideo.play().catch(e => console.log('Video play failed:', e));
             }
             if (thumbnails[carousel.currentSlide]) {
@@ -625,37 +633,29 @@
             allVideos.forEach(video => {
                 video.setAttribute('playsinline', '');
                 video.setAttribute('webkit-playsinline', '');
+                video.setAttribute('muted', '');
                 
-                // Disable autoplay on mobile devices
-                if (window.innerWidth <= 768) {
-                    video.removeAttribute('autoplay');
-                    // Show poster instead
-                    video.load();
-                }
+                // Keep autoplay enabled for all devices
+                video.setAttribute('autoplay', '');
             });
             
-            // Handle mobile video play - prevent fullscreen takeover
-            if (window.innerWidth <= 768) {
-                document.querySelectorAll('.carousel-video').forEach(video => {
-                    video.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const slide = this.closest('.carousel-slide');
-                        if (this.paused) {
-                            this.play();
-                            slide.classList.add('playing');
-                        } else {
-                            this.pause();
-                            slide.classList.remove('playing');
-                        }
-                    });
-                    
-                    // Remove playing class when video ends
-                    video.addEventListener('ended', function() {
-                        const slide = this.closest('.carousel-slide');
-                        slide.classList.remove('playing');
-                    });
+            // Setup intersection observer to play videos when they come into view
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (entry.isIntersecting && video.paused) {
+                        // Play video when it comes into view
+                        video.play().catch(e => console.log('Video autoplay failed:', e));
+                    }
                 });
-            }
+            }, {
+                threshold: 0.5 // Play when 50% of video is visible
+            });
+            
+            // Observe all carousel videos
+            document.querySelectorAll('.carousel-video').forEach(video => {
+                videoObserver.observe(video);
+            });
         });
 
         // Update timestamp every second with correct future date
