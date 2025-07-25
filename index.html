@@ -1388,52 +1388,78 @@
 
         // Mouse spotlight effect
         const mouseSpotlight = document.querySelector('.mouse-spotlight');
-        let spotlightX = 0;
-        let spotlightY = 0;
-        let spotlightCurrentX = 0;
-        let spotlightCurrentY = 0;
-        let isSpotlightMoving = false;
-        let spotlightFadeTimeout;
-
-        document.addEventListener('mousemove', (e) => {
-            spotlightX = e.clientX;
-            spotlightY = e.clientY;
-            
-            // Show spotlight when mouse moves
-            if (!isSpotlightMoving) {
-                isSpotlightMoving = true;
-                mouseSpotlight.style.opacity = '1';
-            }
-            
-            // Clear existing timeout
-            clearTimeout(spotlightFadeTimeout);
-            
-            // Hide spotlight after mouse stops
-            spotlightFadeTimeout = setTimeout(() => {
-                mouseSpotlight.style.opacity = '0';
-                isSpotlightMoving = false;
-            }, 1000);
-        });
-
-        // Smooth animation loop
-        function animateSpotlight() {
-            // Smooth interpolation
-            spotlightCurrentX += (spotlightX - spotlightCurrentX) * 0.1;
-            spotlightCurrentY += (spotlightY - spotlightCurrentY) * 0.1;
-            
-            mouseSpotlight.style.left = spotlightCurrentX + 'px';
-            mouseSpotlight.style.top = spotlightCurrentY + 'px';
-            
-            requestAnimationFrame(animateSpotlight);
+        
+        // Detect if the device is iPadOS/iPad
+        function isIPadOS() {
+            return navigator.maxTouchPoints && 
+                   navigator.maxTouchPoints > 2 && 
+                   /MacIntel/.test(navigator.platform);
         }
         
-        animateSpotlight();
+        // Detect if it's a tablet (including Android tablets)
+        function isTablet() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isIPad = isIPadOS() || /ipad/.test(userAgent);
+            const isAndroidTablet = /android/.test(userAgent) && !/mobile/.test(userAgent);
+            const isSurfaceTablet = /windows nt/.test(userAgent) && /touch/.test(userAgent);
+            
+            return isIPad || isAndroidTablet || isSurfaceTablet;
+        }
+        
+        // Only enable mouse spotlight on desktop devices
+        if (!isTablet()) {
+            let spotlightX = 0;
+            let spotlightY = 0;
+            let spotlightCurrentX = 0;
+            let spotlightCurrentY = 0;
+            let isSpotlightMoving = false;
+            let spotlightFadeTimeout;
 
-        // Hide spotlight when mouse leaves window
-        document.addEventListener('mouseleave', () => {
-            mouseSpotlight.style.opacity = '0';
-            isSpotlightMoving = false;
-        });
+            document.addEventListener('mousemove', (e) => {
+                spotlightX = e.clientX;
+                spotlightY = e.clientY;
+                
+                // Show spotlight when mouse moves
+                if (!isSpotlightMoving) {
+                    isSpotlightMoving = true;
+                    mouseSpotlight.style.opacity = '1';
+                }
+                
+                // Clear existing timeout
+                clearTimeout(spotlightFadeTimeout);
+                
+                // Hide spotlight after mouse stops
+                spotlightFadeTimeout = setTimeout(() => {
+                    mouseSpotlight.style.opacity = '0';
+                    isSpotlightMoving = false;
+                }, 1000);
+            });
+
+            // Smooth animation loop
+            function animateSpotlight() {
+                // Smooth interpolation
+                spotlightCurrentX += (spotlightX - spotlightCurrentX) * 0.1;
+                spotlightCurrentY += (spotlightY - spotlightCurrentY) * 0.1;
+                
+                mouseSpotlight.style.left = spotlightCurrentX + 'px';
+                mouseSpotlight.style.top = spotlightCurrentY + 'px';
+                
+                requestAnimationFrame(animateSpotlight);
+            }
+            
+            animateSpotlight();
+
+            // Hide spotlight when mouse leaves window
+            document.addEventListener('mouseleave', () => {
+                mouseSpotlight.style.opacity = '0';
+                isSpotlightMoving = false;
+            });
+        } else {
+            // Hide spotlight element on tablets
+            if (mouseSpotlight) {
+                mouseSpotlight.style.display = 'none';
+            }
+        }
 
         // Legacy Modal Functions (keeping for compatibility)
         function openEarlyAccessModal() {
