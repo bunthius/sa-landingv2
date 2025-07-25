@@ -333,18 +333,27 @@
         
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-value">$68.3M</div>
-                <div class="stat-label">Total Volume Traded</div>
+                <pixel-canvas data-gap="6" data-speed="20" data-colors="#32feff,#ffffff" data-variant="icon" data-opacity="0.85"></pixel-canvas>
+                <div class="stat-content">
+                    <div class="stat-value">$68.3M</div>
+                    <div class="stat-label">Total Volume Traded</div>
+                </div>
             </div>
             
             <div class="stat-card">
-                <div class="stat-value">$21.1M</div>
-                <div class="stat-label">Annual GDP</div>
+                <pixel-canvas data-gap="6" data-speed="20" data-colors="#32feff,#ffffff" data-variant="icon" data-opacity="0.85"></pixel-canvas>
+                <div class="stat-content">
+                    <div class="stat-value">$21.1M</div>
+                    <div class="stat-label">Annual GDP</div>
+                </div>
             </div>
             
             <div class="stat-card">
-                <div class="stat-value">9.69M</div>
-                <div class="stat-label">Average ATLAS Earned Daily</div>
+                <pixel-canvas data-gap="6" data-speed="20" data-colors="#32feff,#ffffff" data-variant="icon" data-opacity="0.85"></pixel-canvas>
+                <div class="stat-content">
+                    <div class="stat-value">9.69M</div>
+                    <div class="stat-label">Average ATLAS Earned Daily</div>
+                </div>
             </div>
         </div>
         
@@ -1662,6 +1671,303 @@
                 });
             }
         });
+
+        // Pixel Effect Implementation for Stat Cards
+        class Pixel {
+            constructor(canvas, context, x, y, color, speed, delay, distanceRatio) {
+                this.width = canvas.width
+                this.height = canvas.height
+                this.ctx = context
+                this.x = x
+                this.y = y
+                this.color = color
+                this.speed = this.getRandomValue(0.1, 0.9) * speed
+                this.size = 0
+                this.sizeStep = Math.random() * 0.4
+                this.minSize = 0.5
+                
+                // Apply vignetting - smaller max size near edges
+                const vignetteScale = 1 - Math.pow(distanceRatio, 2) * 0.6 // Quadratic falloff
+                this.maxSizeInteger = 3 * vignetteScale  // Scale max size based on distance
+                this.maxSize = this.getRandomValue(this.minSize, Math.max(this.minSize, this.maxSizeInteger))
+                
+                this.delay = delay
+                this.counter = 0
+                this.counterStep = Math.random() * 2 + 3  // Reduced randomness for more uniform reveal
+                this.isIdle = false
+                this.isReverse = false
+                this.isShimmer = false
+                this.distanceRatio = distanceRatio
+            }
+
+            getRandomValue(min, max) {
+                return Math.random() * (max - min) + min
+            }
+
+            draw() {
+                const centerOffset = this.maxSizeInteger * 0.5 - this.size * 0.5
+                
+                // Apply vignetting to opacity
+                this.ctx.save()
+                const vignetteOpacity = 1 - Math.pow(this.distanceRatio, 1.5) * 0.7
+                this.ctx.globalAlpha = this.ctx.globalAlpha * vignetteOpacity
+                
+                this.ctx.fillStyle = this.color
+                this.ctx.fillRect(
+                    this.x + centerOffset,
+                    this.y + centerOffset,
+                    this.size,
+                    this.size
+                )
+                
+                this.ctx.restore()
+            }
+
+            appear() {
+                this.isIdle = false
+
+                if (this.counter <= this.delay) {
+                    this.counter += this.counterStep
+                    return
+                }
+
+                if (this.size >= this.maxSize) {
+                    this.isShimmer = true
+                }
+
+                if (this.isShimmer) {
+                    this.shimmer()
+                } else {
+                    this.size += this.sizeStep
+                }
+
+                this.draw()
+            }
+
+            disappear() {
+                this.isShimmer = false
+                this.counter = 0
+
+                if (this.size <= 0) {
+                    this.isIdle = true
+                    return
+                } else {
+                    this.size -= 0.1
+                }
+
+                this.draw()
+            }
+
+            shimmer() {
+                if (this.size >= this.maxSize) {
+                    this.isReverse = true
+                } else if (this.size <= this.minSize) {
+                    this.isReverse = false
+                }
+
+                if (this.isReverse) {
+                    this.size -= this.speed
+                } else {
+                    this.size += this.speed
+                }
+            }
+        }
+
+        // Define the pixel canvas web component
+        class PixelCanvasElement extends HTMLElement {
+            constructor() {
+                super()
+                this.canvas = document.createElement("canvas")
+                this.ctx = this.canvas.getContext("2d")
+                this.pixels = []
+                this.animation = null
+                this.timeInterval = 1000 / 60
+                this.timePrevious = performance.now()
+                this.reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                this._initialized = false
+                this._resizeObserver = null
+                this._parent = null
+
+                const shadow = this.attachShadow({ mode: "open" })
+                const style = document.createElement("style")
+                style.textContent = `
+                    :host {
+                        display: grid;
+                        inline-size: 100%;
+                        block-size: 100%;
+                        overflow: hidden;
+                    }
+                `
+                shadow.appendChild(style)
+                shadow.appendChild(this.canvas)
+            }
+
+            get colors() {
+                return this.dataset.colors?.split(",") || ["#32feff", "#ffffff", "#7dd3fc"]
+            }
+
+            get gap() {
+                const value = Number(this.dataset.gap) || 5
+                return Math.max(4, Math.min(50, value))
+            }
+
+            get speed() {
+                const value = Number(this.dataset.speed) || 35
+                return this.reducedMotion ? 0 : Math.max(0, Math.min(100, value)) * 0.001
+            }
+
+            get variant() {
+                return this.dataset.variant || "default"
+            }
+
+            get opacity() {
+                const value = Number(this.dataset.opacity)
+                return isNaN(value) ? 1 : Math.max(0, Math.min(1, value))
+            }
+
+            connectedCallback() {
+                if (this._initialized) return
+                this._initialized = true
+                this._parent = this.parentElement
+
+                requestAnimationFrame(() => {
+                    this.handleResize()
+
+                    const ro = new ResizeObserver((entries) => {
+                        if (!entries.length) return
+                        requestAnimationFrame(() => this.handleResize())
+                    })
+                    ro.observe(this)
+                    this._resizeObserver = ro
+                })
+
+                this._parent?.addEventListener("mouseenter", () => this.handleAnimation("appear"))
+                this._parent?.addEventListener("mouseleave", () => this.handleAnimation("disappear"))
+            }
+
+            disconnectedCallback() {
+                this._initialized = false
+                this._resizeObserver?.disconnect()
+
+                if (this.animation) {
+                    cancelAnimationFrame(this.animation)
+                    this.animation = null
+                }
+
+                this._parent = null
+            }
+
+            handleResize() {
+                if (!this.ctx || !this._initialized) return
+
+                const rect = this.getBoundingClientRect()
+                if (rect.width === 0 || rect.height === 0) return
+
+                const width = Math.floor(rect.width)
+                const height = Math.floor(rect.height)
+
+                const dpr = window.devicePixelRatio || 1
+                this.canvas.width = width * dpr
+                this.canvas.height = height * dpr
+                this.canvas.style.width = `${width}px`
+                this.canvas.style.height = `${height}px`
+
+                this.ctx.setTransform(1, 0, 0, 1, 0, 0)
+                this.ctx.scale(dpr, dpr)
+
+                this.createPixels()
+            }
+
+            getDistanceToCenter(x, y) {
+                // Use CSS dimensions for proper center calculation
+                const rect = this.getBoundingClientRect()
+                const centerX = rect.width / 2
+                const centerY = rect.height / 2
+                const dx = x - centerX
+                const dy = y - centerY
+                return Math.sqrt(dx * dx + dy * dy)
+            }
+
+            createPixels() {
+                if (!this.ctx) return
+                this.pixels = []
+
+                // Get actual element dimensions for proper center calculation
+                const rect = this.getBoundingClientRect()
+                const width = rect.width
+                const height = rect.height
+
+                // Calculate max distance for normalization
+                const maxDistance = Math.sqrt(
+                    Math.pow(width / 2, 2) + 
+                    Math.pow(height / 2, 2)
+                )
+
+                // Create pixels based on CSS dimensions, not canvas dimensions
+                for (let x = 0; x < width; x += this.gap) {
+                    for (let y = 0; y < height; y += this.gap) {
+                        const color = this.colors[Math.floor(Math.random() * this.colors.length)]
+                        // Enhanced delay calculation for clearer radial effect
+                        let delay = 0
+                        const distance = this.getDistanceToCenter(x, y)
+                        const distanceRatio = distance / maxDistance
+                        
+                        if (!this.reducedMotion && this.variant === 'icon') {
+                            // Normalize and scale the delay for more visible radial pattern
+                            delay = distanceRatio * 200  // Increased from 150 to slow down
+                        }
+
+                        this.pixels.push(
+                            new Pixel(this.canvas, this.ctx, x, y, color, this.speed, delay, distanceRatio)
+                        )
+                    }
+                }
+            }
+
+            handleAnimation(name) {
+                if (this.animation) {
+                    cancelAnimationFrame(this.animation)
+                }
+
+                const animate = () => {
+                    this.animation = requestAnimationFrame(animate)
+
+                    const timeNow = performance.now()
+                    const timePassed = timeNow - this.timePrevious
+
+                    if (timePassed < this.timeInterval) return
+
+                    this.timePrevious = timeNow - (timePassed % this.timeInterval)
+
+                    if (!this.ctx) return
+                    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+                    
+                    // Apply global opacity for dimmer effect
+                    this.ctx.save()
+                    this.ctx.globalAlpha = this.opacity
+
+                    let allIdle = true
+                    for (const pixel of this.pixels) {
+                        pixel[name]()
+                        if (!pixel.isIdle) allIdle = false
+                    }
+                    
+                    this.ctx.restore()
+
+                    if (allIdle) {
+                        cancelAnimationFrame(this.animation)
+                        this.animation = null
+                    }
+                }
+
+                animate()
+            }
+        }
+
+        // Register the web component
+        if (!customElements.get("pixel-canvas")) {
+            customElements.define("pixel-canvas", PixelCanvasElement)
+        }
     </script>
 
     <!-- Early Access Modal -->
