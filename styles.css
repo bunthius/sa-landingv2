@@ -2206,6 +2206,16 @@ body.content-unlocked .hero {
     background: #000;
 }
 
+/* Pixel canvas styling for discord card */
+.discord-card-image pixel-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
 .discord-card-image img {
     width: 100%;
     height: 100%;
@@ -2223,6 +2233,7 @@ body.content-unlocked .hero {
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
+    z-index: 3;
     align-items: center;
     gap: 1rem;
     z-index: 2;
