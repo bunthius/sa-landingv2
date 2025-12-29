@@ -297,9 +297,10 @@
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+        // Clamp rotation to max 4 degrees
+        const rotateX = Math.max(-4, Math.min(4, (y - centerY) / 40));
+        const rotateY = Math.max(-4, Math.min(4, (centerX - x) / 40));
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(3px)`;
       });
 
       card.addEventListener('mouseleave', () => {

@@ -1,72 +1,358 @@
 [
   {
     "path": "game/",
-    "title": "Game",
-    "description": "Explore Star Atlas AAA space MMO gameplay across immersive third-person adventure and strategic fleet command modes.",
-    "h1": "Game",
-    "sectionNumber": "0001."
+    "title": "Game Overview",
+    "description": "Explore Star Atlas AAA space exploration MMO across immersive third-person adventure, strategic fleet command, and browser-based gameplay modes.",
+    "h1": "The Game",
+    "sectionNumber": "0001.",
+    "videoSrc": "src/herosection_loop_7-21-hb3.mp4",
+    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_1_ImageThumbnail.png",
+    "intro": "Star Atlas offers multiple ways to experience the Galia Expanse. Explore on foot in third-person, command vast fleets from a strategic view, or dive into the economy. Choose your path and shape the galaxy's future.",
+    "features": [
+      {
+        "title": "Third-Person Experience",
+        "description": "Immerse yourself in AAA-quality exploration. Walk the decks of your ships, engage in FPS combat, and experience Galia up close.",
+        "bullets": ["Ship interior exploration", "FPS and ship-to-ship combat", "Resource extraction missions", "Quest-driven storylines"]
+      },
+      {
+        "title": "Fleet Command RTS",
+        "description": "Switch to a top-down strategic view to manage your entire armada. Coordinate fleet movements, control territories, and outmaneuver rival factions.",
+        "bullets": ["Mass fleet management", "Territory control", "Faction warfare", "Real-time strategy"]
+      },
+      {
+        "title": "Browser-Based Play",
+        "description": "Access Star Atlas from any device. SAGE Labs and Holosim bring the economy and fleet simulation to your browser. No downloads required.",
+        "bullets": ["Play anywhere", "No special hardware needed", "Full economic participation", "Free-to-play options"]
+      }
+    ],
+    "cta": {
+      "title": "Ready to Begin?",
+      "text": "Choose your entry point into the Star Atlas universe. Start with the free Holosim simulation or dive into the full experience."
+    }
   },
   {
     "path": "game/galia/",
-    "title": "Galia",
-    "description": "Explore the unexplored in Star Atlas AAA space MMO. Take on unknown dangers and build your galactic empire in Galia.",
-    "h1": "Galia",
+    "title": "Galia Expanse",
+    "description": "Explore the vast Galia Expanse, the uncharted heart of Star Atlas where three factions vie for control of resources, territory, and the galaxy's future.",
+    "h1": "The Galia Expanse",
     "sectionNumber": "0001.",
     "videoSrc": "src/GAME section/3rd Person Experience/Slide_1_Galia.mp4",
-    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_1_ImageThumbnail.png"
+    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_1_ImageThumbnail.png",
+    "intro": "The Galia Expanse is a vast, uncharted region teeming with opportunities and dangers. From resource-rich asteroid fields to mysterious anomalies, Galia serves as the primary battleground where MUD, ONI, and Ustur factions compete for dominance.",
+    "lore": {
+      "title": "The Cataclysm",
+      "text": "Long ago, the rogue planet Iris collided with seven child planets, creating 'The Cataclysm.' Dense with invaluable materials and radiating mysterious energy, this catastrophic event birthed a unique form of free energy and the most coveted resource zone in the galaxy. The Tufa, enigmatic hybrid mineral-organic beings, now guard the asteroid belts near Iris with zealous intensity."
+    },
+    "features": [
+      {
+        "title": "Exploration & Discovery",
+        "description": "Navigate uncharted territories filled with hidden resources, ancient artifacts, and mysterious celestial phenomena.",
+        "bullets": ["Procedurally varied environments", "Hidden treasure caches", "Anomaly investigation", "Lore discoveries"]
+      },
+      {
+        "title": "Resource Extraction",
+        "description": "Mine asteroids and planetary surfaces for essential materials. Titanium, carbon, hydrogen, and rare elements fuel the galactic economy.",
+        "bullets": ["Asteroid mining", "Surface extraction", "Varied asteroid sizes", "Vehicle mining modes"]
+      },
+      {
+        "title": "Faction Territories",
+        "description": "Galia is divided among MUD, ONI, and Ustur. Your allegiance shapes your alliances, enemies, and strategic opportunities.",
+        "bullets": ["Territory control mechanics", "Faction-specific benefits", "Political landscape", "Alliance systems"]
+      }
+    ],
+    "stats": [
+      {"value": "3", "label": "Major Factions"},
+      {"value": "∞", "label": "Explorable Space"},
+      {"value": "100+", "label": "Resource Types"},
+      {"value": "24/7", "label": "Live Economy"}
+    ],
+    "guide": {
+      "title": "Getting Started in Galia",
+      "steps": ["Choose your faction alignment (MUD, ONI, or Ustur)", "Acquire your first ship via the Galactic Marketplace", "Complete introductory missions to learn navigation", "Begin resource extraction to fund your expansion", "Join a DAC (guild) for collaborative gameplay"]
+    },
+    "cta": {
+      "title": "Enter the Expanse",
+      "text": "The Galia Expanse awaits. Whether you seek fortune, glory, or galactic domination, your journey begins here."
+    }
   },
   {
     "path": "game/game-modes/",
     "title": "Game Modes",
-    "description": "Experience AAA shooter arena battles, racing tracks, PVE dogfights and more in Star Atlas space exploration MMO.",
+    "description": "Experience AAA shooter arena battles, high-speed racing, PvE dogfights, and more in Star Atlas. The space exploration MMO with something for every pilot.",
     "h1": "Game Modes",
     "sectionNumber": "0001.",
     "videoSrc": "src/GAME section/3rd Person Experience/Slide_2_GameModes.mp4",
-    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_2_ImageThumbnail.png"
+    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_2_ImageThumbnail.png",
+    "intro": "Star Atlas delivers diverse gameplay experiences designed for different playstyles. From intense PvP combat arenas to cooperative PvE missions, the game offers something for combat enthusiasts, strategists, and explorers alike.",
+    "features": [
+      {
+        "title": "Arena Combat",
+        "description": "Test your piloting skills in dedicated combat arenas. The X5 Arena features dedicated servers for smooth, competitive ship-to-ship battles.",
+        "bullets": ["Dedicated server infrastructure", "Ranked matchmaking", "Multiple arena layouts", "Ship class balancing"]
+      },
+      {
+        "title": "Racing Circuits",
+        "description": "Push your ships to their limits on high-speed racing tracks through asteroid fields and space stations.",
+        "bullets": ["Time trials", "Head-to-head racing", "Ship customization for speed", "Leaderboard competitions"]
+      },
+      {
+        "title": "PvE Encounters",
+        "description": "Face AI-controlled enemies in dogfights and missions. Complete bounties, defend convoys, and take on escalating challenges.",
+        "bullets": ["Bounty hunting missions", "Convoy defense", "Boss encounters", "Cooperative multiplayer"]
+      },
+      {
+        "title": "Open World",
+        "description": "Roam freely through the Galia Expanse. The open-world mode combines exploration, combat, mining, and trading.",
+        "bullets": ["Seamless world", "Dynamic events", "Player-driven encounters", "Persistent universe"]
+      }
+    ],
+    "stats": [
+      {"value": "5+", "label": "Game Modes"},
+      {"value": "PvP", "label": "& PvE"},
+      {"value": "Solo", "label": "& Co-op"},
+      {"value": "Ranked", "label": "& Casual"}
+    ],
+    "cta": {
+      "title": "Choose Your Battle",
+      "text": "Whether you prefer structured arena combat or the freedom of open-world exploration, Star Atlas has a mode for you."
+    }
   },
   {
     "path": "game/your-fleet-your-way/",
     "title": "Your Fleet, Your Way",
-    "description": "Customize your fleet in Star Atlas AAA space MMO. Explore ship interiors or command your entire armada your way.",
+    "description": "Build, customize, and command your fleet in Star Atlas. Explore ship interiors, manage armadas, and shape your path in the Galia Expanse.",
     "h1": "Your Fleet, Your Way",
     "sectionNumber": "0001.",
     "videoSrc": "src/GAME section/3rd Person Experience/Slide_3_YourFleetYourWay.mp4",
-    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_3_ImageThumbnail.png"
+    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_3_ImageThumbnail.png",
+    "intro": "In Star Atlas, ships serve as homes, businesses, and strategic assets. Explore every deck of your vessels, customize their loadouts, and build a fleet that reflects your ambitions in the Galia Expanse.",
+    "features": [
+      {
+        "title": "Ship Interiors",
+        "description": "Walk through fully realized ship interiors. From the bridge to the cargo hold, every space is explorable and functional.",
+        "bullets": ["Detailed 3D environments", "Functional ship systems", "Crew quarters", "Cargo management"]
+      },
+      {
+        "title": "Fleet Management",
+        "description": "Manage your entire armada from a single interface. Assign ships to missions, coordinate movements, and optimize your fleet composition.",
+        "bullets": ["Multi-ship coordination", "Mission assignment", "Fleet analytics", "Resource allocation"]
+      },
+      {
+        "title": "Customization",
+        "description": "Outfit your ships with weapons, modules, and cosmetics. Every ship can be tailored to your preferred playstyle.",
+        "bullets": ["Weapon loadouts", "Module systems", "Visual customization", "Performance tuning"]
+      },
+      {
+        "title": "Fleet Rentals",
+        "description": "Turn idle ships into income or access powerful vessels without ownership. The Fleet Rental Program creates opportunities for all players.",
+        "bullets": ["Rent out your ships", "Passive income generation", "Access premium vessels", "Flexible contracts"]
+      }
+    ],
+    "stats": [
+      {"value": "100+", "label": "Ship Models"},
+      {"value": "XXS-Titan", "label": "Size Classes"},
+      {"value": "Owner", "label": "Or Renter"},
+      {"value": "Full", "label": "Customization"}
+    ],
+    "guide": {
+      "title": "Building Your First Fleet",
+      "steps": ["Start with a ship role of your choice", "Learn your ship's interior layout and systems", "Acquire specialized vessels as you identify your playstyle", "Consider renting ships to test before buying", "Join fleet operations with your DAC for large-scale coordination"]
+    },
+    "cta": {
+      "title": "Build Your Legacy",
+      "text": "Your fleet is your empire. Start building today and leave your mark on the Galia Expanse."
+    }
   },
   {
     "path": "game/life-in-galia/",
     "title": "Life in Galia",
-    "description": "Discover diverse alien species from Punaabs to beings of pure light in Star Atlas AAA space exploration MMO.",
+    "description": "Discover the diverse alien species of Star Atlas, from the furred Punaabs to luminous beings of pure light. The Galia Expanse teems with life.",
     "h1": "Life in Galia",
     "sectionNumber": "0001.",
     "videoSrc": "src/GAME section/3rd Person Experience/Slide_4_LifeinGalia.mp4",
-    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_4_ImageThumbnail.png"
+    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_4_ImageThumbnail.png",
+    "intro": "The Galia Expanse is home to an extraordinary diversity of life. Three major factions, each comprising multiple species with unique cultures and technologies, compete and cooperate in shaping the galaxy's future.",
+    "lore": {
+      "title": "The Council of Peace",
+      "text": "After the devastating Convergence War, the surviving factions established the Council of Peace, a fragile alliance that maintains order in Galia. Each faction brings its own history, strengths, and vision for the future, creating a rich tapestry of politics, culture, and conflict."
+    },
+    "features": [
+      {
+        "title": "MUD (Manus Ultima Divina)",
+        "description": "The human faction, originating from Earth. Under the leadership of Charon Gotti Jr., MUD has transformed from its controversial origins into an industrial powerhouse built on fair trade and diplomatic relations.",
+        "bullets": ["Human-centric culture", "Industrial strength", "Diplomatic approach", "Earth heritage"]
+      },
+      {
+        "title": "ONI Consortium",
+        "description": "A coalition of diverse alien species united by shared interests. ONI represents technological advancement and the pursuit of knowledge across the stars.",
+        "bullets": ["Multi-species alliance", "Advanced technology", "Scientific focus", "Exploration driven"]
+      },
+      {
+        "title": "Ustur Sector",
+        "description": "A faction of sentient androids guided by logic and efficiency. The Ustur seek to optimize existence itself, bringing a unique perspective to galactic affairs.",
+        "bullets": ["Android civilization", "Logic-based society", "Efficiency focused", "Technological mastery"]
+      },
+      {
+        "title": "The Tufa",
+        "description": "Mysterious hybrid mineral-organic beings dwelling near the Cataclysm zone. The Tufa guard the galaxy's most valuable resources with zealous intensity.",
+        "bullets": ["Ancient beings", "Mineral-organic hybrid", "Resource guardians", "Mysterious origins"]
+      }
+    ],
+    "stats": [
+      {"value": "3", "label": "Major Factions"},
+      {"value": "12+", "label": "Playable Races"},
+      {"value": "Ancient", "label": "Lore"},
+      {"value": "Player", "label": "Choice"}
+    ],
+    "cta": {
+      "title": "Choose Your Path",
+      "text": "Your faction shapes your story. Will you fight for humanity's future, pursue knowledge with the ONI, or embrace the cold logic of the Ustur?"
+    }
   },
   {
     "path": "game/fleet-command/",
     "title": "Fleet Command",
-    "description": "Command vast fleets from a strategic top-down RTS view in Star Atlas AAA space MMO. Dominate Galia and outmaneuver factions.",
+    "description": "Command vast fleets from a strategic top-down RTS view in Star Atlas. Dominate territories, manage resources, and outmaneuver rival factions.",
     "h1": "Fleet Command",
     "sectionNumber": "0001.",
     "videoSrc": "src/GAME section/Top-down RTS View/TDS_Slide_1_FleetCommand.mp4",
-    "poster": "src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png"
+    "poster": "src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png",
+    "intro": "Fleet Command transforms Star Atlas into a grand strategy experience. Currently in development. Shift from third-person exploration to a strategic overview where you'll coordinate armadas, control territory, and shape Galia's political landscape.",
+    "lore": {
+      "title": "The Art of Command",
+      "text": "In the vastness of Galia, individual heroism only goes so far. The great powers of the galaxy are built by those who can coordinate fleets of hundreds of ships, manage supply lines across light-years, and outthink their opponents before the first shot is fired."
+    },
+    "features": [
+      {
+        "title": "Strategic Overview",
+        "description": "See the bigger picture. The top-down view reveals fleet positions, resource nodes, faction territories, and strategic opportunities invisible from the cockpit.",
+        "bullets": ["Galaxy-wide visibility", "Fleet positioning", "Territory visualization", "Threat assessment"]
+      },
+      {
+        "title": "Mass Fleet Operations",
+        "description": "Command dozens or hundreds of ships simultaneously. Issue coordinated orders, manage formations, and execute complex tactical maneuvers.",
+        "bullets": ["Multi-fleet coordination", "Formation commands", "Tactical maneuvers", "Automated logistics"]
+      },
+      {
+        "title": "Territory Control",
+        "description": "Establish and defend control over valuable regions. Starbases serve as your footholds in contested space.",
+        "bullets": ["Starbase construction", "Defense networks", "Resource control", "Expansion planning"]
+      },
+      {
+        "title": "Faction Politics",
+        "description": "Navigate the complex web of faction relationships. Form alliances, negotiate agreements, and wage economic or military warfare.",
+        "bullets": ["Diplomatic options", "Alliance systems", "Economic warfare", "Political influence"]
+      }
+    ],
+    "stats": [
+      {"value": "RTS", "label": "Strategy"},
+      {"value": "100s", "label": "Of Ships"},
+      {"value": "Real", "label": "Stakes"},
+      {"value": "Live", "label": "On-Chain"}
+    ],
+    "guide": {
+      "title": "Fleet Command Basics",
+      "steps": ["Access Fleet Command from your capital ship's bridge", "Familiarize yourself with the strategic map and controls", "Start with small fleet operations to learn coordination", "Establish your first starbase in a contested region", "Coordinate with your DAC for large-scale operations"]
+    },
+    "cta": {
+      "title": "Take Command",
+      "text": "The galaxy doesn't conquer itself. Rise from pilot to admiral and lead your faction to dominance."
+    }
   },
   {
     "path": "game/holosim/",
     "title": "Holosim",
-    "description": "Play Holosim—a free-to-play strategic fleet simulation in Star Atlas AAA space MMO. No hardware or crypto wallet required.",
+    "description": "Play Holosim, a free-to-play strategic fleet simulation in Star Atlas. No downloads, no crypto wallet required. Experience fleet command instantly.",
     "h1": "Holosim",
     "sectionNumber": "0001.",
     "videoSrc": "src/GAME section/Top-down RTS View/Slide_2_Holosim.mp4",
-    "poster": "src/GAME section/Top-down RTS View/Thumbnail Images/Slide_1_Holosim_Thumbnail.png"
+    "poster": "src/GAME section/Top-down RTS View/Thumbnail Images/Slide_1_Holosim_Thumbnail.png",
+    "intro": "Holosim brings Fleet Command to your browser, free to play and instantly accessible. An in-universe simulation that lets you experience strategic gameplay without special hardware or a crypto wallet. The perfect entry point into Star Atlas.",
+    "features": [
+      {
+        "title": "Instant Access",
+        "description": "No downloads, no installations, no wallet setup. Open your browser and start commanding fleets within minutes.",
+        "bullets": ["Browser-based gameplay", "No downloads required", "No crypto wallet needed", "Works on any device"]
+      },
+      {
+        "title": "Free to Play",
+        "description": "Experience Star Atlas fleet mechanics without any upfront investment. Holosim is designed to welcome new players to the universe.",
+        "bullets": ["Zero cost entry", "Full gameplay experience", "Learn before you invest", "No pay-to-win mechanics"]
+      },
+      {
+        "title": "Real Mechanics",
+        "description": "Holosim offers genuine Star Atlas fleet command simulation with meaningful strategic depth. This is real gameplay, accessible to everyone.",
+        "bullets": ["Authentic fleet management", "Strategic decision-making", "Resource management", "Tactical combat"]
+      },
+      {
+        "title": "Path to Full Game",
+        "description": "Skills learned in Holosim transfer directly to the full Star Atlas experience. Graduate from simulation to reality when you're ready.",
+        "bullets": ["Skills transfer", "Seamless progression", "Community integration", "Economy connection"]
+      }
+    ],
+    "stats": [
+      {"value": "Free", "label": "To Play"},
+      {"value": "0", "label": "Downloads"},
+      {"value": "5min", "label": "To Start"},
+      {"value": "100%", "label": "Browser"}
+    ],
+    "guide": {
+      "title": "Getting Started with Holosim",
+      "steps": ["Visit the Star Atlas Holosim portal", "Create a free account (no wallet required)", "Complete the tutorial to learn basic fleet commands", "Participate in simulation battles", "Connect your wallet when ready to enter the real economy"]
+    },
+    "cta": {
+      "title": "Try It Now",
+      "text": "No barriers, no risk. Experience Star Atlas fleet command in your browser right now."
+    }
   },
   {
     "path": "game/sage-labs/",
     "title": "SAGE Labs",
-    "description": "Mine resources, craft items, and power the Star Atlas economy in SAGE Labs—the browser-based AAA space MMO experience.",
+    "description": "Mine resources, craft items, and power the Star Atlas economy in SAGE Labs. The browser-based gateway to the Galia Expanse.",
     "h1": "SAGE Labs",
     "sectionNumber": "0001.",
     "videoSrc": "src/GAME section/Top-down RTS View/TDS_Slide_1_FleetCommand.mp4",
-    "poster": "src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png"
+    "poster": "src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png",
+    "intro": "SAGE Labs is where real economic gameplay happens. Fully on-chain, every action carries weight. Mine resources, craft gear, trade on open markets. Your decisions have lasting consequences in a persistent, player-driven economy.",
+    "lore": {
+      "title": "The Golden Era",
+      "text": "SAGE represents the current era of Star Atlas, a time of expansion, opportunity, and economic growth. As players establish starbases, extract resources, and build the infrastructure of galactic civilization, they're writing the history that will define the future of Galia."
+    },
+    "features": [
+      {
+        "title": "Resource Mining",
+        "description": "Extract valuable resources from asteroids and planets. Your mining operations fuel the crafting economy and generate income.",
+        "bullets": ["Multiple resource types", "Varied mining locations", "Fleet-based extraction", "Automated operations"]
+      },
+      {
+        "title": "Crafting System",
+        "description": "Transform raw materials into valuable items, components, and equipment. Supply the marketplace and build your manufacturing empire.",
+        "bullets": ["Comprehensive crafting", "Recipe discovery", "Component manufacturing", "Market integration"]
+      },
+      {
+        "title": "SDU Scanning",
+        "description": "Scan for Survey Data Units, valuable data packages that provide resources and information. SDU hunting is a unique gameplay loop.",
+        "bullets": ["Exploration gameplay", "Random discoveries", "Valuable rewards", "Risk vs reward"]
+      },
+      {
+        "title": "Starbased Integration",
+        "description": "SAGE Labs connects to the broader Starbased system. Your economic activities contribute to your faction's starbase network.",
+        "bullets": ["Starbase construction", "Collaborative building", "Faction progression", "Loyalty rewards"]
+      }
+    ],
+    "stats": [
+      {"value": "24/7", "label": "Economy"},
+      {"value": "Real", "label": "Earnings"},
+      {"value": "Web", "label": "Based"},
+      {"value": "100%", "label": "On-Chain"}
+    ],
+    "guide": {
+      "title": "Starting in SAGE Labs",
+      "steps": ["Connect your Solana wallet with Star Atlas assets", "Assign your ships to fleet operations", "Begin mining operations at resource-rich locations", "Process resources and craft valuable items", "Sell on the Galactic Marketplace for ATLAS tokens"]
+    },
+    "cta": {
+      "title": "Build Your Economy",
+      "text": "The Star Atlas economy runs on player activity. Every resource mined, item crafted, and trade executed shapes the galaxy. Start building in SAGE Labs."
+    }
   }
 ]
