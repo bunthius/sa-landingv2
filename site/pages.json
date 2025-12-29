@@ -1,0 +1,72 @@
+[
+  {
+    "path": "game/",
+    "title": "Game",
+    "description": "Explore Star Atlas AAA space MMO gameplay across immersive third-person adventure and strategic fleet command modes.",
+    "h1": "Game",
+    "sectionNumber": "0001."
+  },
+  {
+    "path": "game/galia/",
+    "title": "Galia",
+    "description": "Explore the unexplored in Star Atlas AAA space MMO. Take on unknown dangers and build your galactic empire in Galia.",
+    "h1": "Galia",
+    "sectionNumber": "0001.",
+    "videoSrc": "src/GAME section/3rd Person Experience/Slide_1_Galia.mp4",
+    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_1_ImageThumbnail.png"
+  },
+  {
+    "path": "game/game-modes/",
+    "title": "Game Modes",
+    "description": "Experience AAA shooter arena battles, racing tracks, PVE dogfights and more in Star Atlas space exploration MMO.",
+    "h1": "Game Modes",
+    "sectionNumber": "0001.",
+    "videoSrc": "src/GAME section/3rd Person Experience/Slide_2_GameModes.mp4",
+    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_2_ImageThumbnail.png"
+  },
+  {
+    "path": "game/your-fleet-your-way/",
+    "title": "Your Fleet, Your Way",
+    "description": "Customize your fleet in Star Atlas AAA space MMO. Explore ship interiors or command your entire armada your way.",
+    "h1": "Your Fleet, Your Way",
+    "sectionNumber": "0001.",
+    "videoSrc": "src/GAME section/3rd Person Experience/Slide_3_YourFleetYourWay.mp4",
+    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_3_ImageThumbnail.png"
+  },
+  {
+    "path": "game/life-in-galia/",
+    "title": "Life in Galia",
+    "description": "Discover diverse alien species from Punaabs to beings of pure light in Star Atlas AAA space exploration MMO.",
+    "h1": "Life in Galia",
+    "sectionNumber": "0001.",
+    "videoSrc": "src/GAME section/3rd Person Experience/Slide_4_LifeinGalia.mp4",
+    "poster": "src/GAME section/3rd Person Experience/Thumbnails in carousel/Slide_4_ImageThumbnail.png"
+  },
+  {
+    "path": "game/fleet-command/",
+    "title": "Fleet Command",
+    "description": "Command vast fleets from a strategic top-down RTS view in Star Atlas AAA space MMO. Dominate Galia and outmaneuver factions.",
+    "h1": "Fleet Command",
+    "sectionNumber": "0001.",
+    "videoSrc": "src/GAME section/Top-down RTS View/TDS_Slide_1_FleetCommand.mp4",
+    "poster": "src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png"
+  },
+  {
+    "path": "game/holosim/",
+    "title": "Holosim",
+    "description": "Play Holosim—a free-to-play strategic fleet simulation in Star Atlas AAA space MMO. No hardware or crypto wallet required.",
+    "h1": "Holosim",
+    "sectionNumber": "0001.",
+    "videoSrc": "src/GAME section/Top-down RTS View/Slide_2_Holosim.mp4",
+    "poster": "src/GAME section/Top-down RTS View/Thumbnail Images/Slide_1_Holosim_Thumbnail.png"
+  },
+  {
+    "path": "game/sage-labs/",
+    "title": "SAGE Labs",
+    "description": "Mine resources, craft items, and power the Star Atlas economy in SAGE Labs—the browser-based AAA space MMO experience.",
+    "h1": "SAGE Labs",
+    "sectionNumber": "0001.",
+    "videoSrc": "src/GAME section/Top-down RTS View/TDS_Slide_1_FleetCommand.mp4",
+    "poster": "src/GAME section/Top-down RTS View/Thumbnail Images/RTS_Slide_1_ImageThumbnail.png"
+  }
+]

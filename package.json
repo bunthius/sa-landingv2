@@ -1,0 +1,10 @@
+{
+  "name": "sa-landingv2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node site/generate.mjs"
+  }
+}
+
+
